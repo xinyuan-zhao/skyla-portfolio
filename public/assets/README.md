@@ -1,0 +1,1 @@
+Place only approved screenshots and demonstration videos in this directory. No assets were supplied. Reference them from src/content.ts using relative paths such as assets/project04-demo.png. Do not include confidential data or personal information.
