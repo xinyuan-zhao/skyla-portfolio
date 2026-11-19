@@ -5,119 +5,281 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Skyla Zhao | Data Analytics &amp; Reporting Portfolio</title>
 <style>
-:root{color-scheme:light;--paper:#f3f3f0;--ink:#252628;--muted:#505356;--accent:#34373a;--line:#d5d7d5;--surface:#fcfcfa;font-family:Inter,"Segoe UI",system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.4}
-*{box-sizing:border-box}body{margin:0}main{max-width:1200px;margin:auto;padding:24px 24px 32px}h1,h2,h3,p,dl,dd,ol{margin:0}a,button{color:var(--accent)}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-.eyebrow{font-size:13px;font-weight:650;color:var(--accent)}header{position:relative;padding-bottom:12px;border-bottom:2px solid var(--accent)}.identity{position:absolute;right:0;top:0;max-width:330px;text-align:right;font-size:14px;color:var(--muted)}.identity strong{display:block;color:var(--ink);font-size:18px}h1{font-size:clamp(24px,2.95vw,36px);line-height:1.08;margin:6px 0 12px;font-weight:700}header p{font-size:16px}
-h2{font-size:20px;margin-bottom:8px}.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{border:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column}.card h3{font-size:21px;line-height:1.2;margin:4px 0 8px}.card dl{font-size:15px;display:grid;grid-template-columns:80px minmax(0,1fr);column-gap:8px;row-gap:2px}.card dt{font-weight:650}.card dd{color:var(--muted)}.actions{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:auto;padding-top:8px;align-items:center}.open{border:1px solid var(--accent);padding:3px 8px;background:transparent;font-size:13px;font-weight:650}
-header{margin-bottom:18px}.projects{gap:16px}.card{padding:16px}.card dl{row-gap:4px}.tags,.capabilities{list-style:none;padding:0;margin:12px 0 0;display:flex;gap:4px 8px;flex-wrap:wrap}.tags li,.capabilities li{border:1px solid var(--line);padding:2px 8px;font-size:13px}.actions{padding-top:12px}.open{min-height:32px}.open:hover{background:var(--accent);color:var(--paper)}
-.transfer{margin-top:20px}.transfer h2{font-size:16px;margin:0}.transfer p,footer{font-size:13px;color:var(--muted);margin-top:8px}footer{border-top:1px solid var(--line);padding-top:8px}
-dialog{width:min(1056px,calc(100% - 32px));max-height:calc(100dvh - 24px);padding:16px 24px;border:1px solid var(--accent);background:var(--paper);color:var(--ink)}dialog::backdrop{background:#1a1a1ab0}dialog form{float:right;margin-left:12px}dialog h2{font-size:24px}dialog p{color:var(--muted)}figure{margin:12px 0}.sample-stage{height:clamp(160px,54vh,520px);display:grid;place-items:center;overflow:hidden;border:1px solid var(--line)}.sample-stage img,.sample-stage video{width:100%;height:100%;object-fit:contain}.sample-stage [hidden]{display:none}.placeholder{padding:16px;text-align:center}.placeholder strong{display:block;color:var(--ink)}figcaption{margin-top:8px;color:var(--muted);font-size:14px}figcaption strong{display:block;color:var(--ink);font-size:16px}.pager{display:flex;align-items:center;justify-content:space-between;gap:8px}.pager button[aria-disabled=true]{color:var(--muted);border-color:var(--line);background:transparent;cursor:default}
-@media(max-width:940px){.identity{position:static;text-align:left;margin-top:8px;max-width:none}.identity strong{display:inline;margin-right:8px}}
-@media(max-width:700px){main{padding:16px}.projects{grid-template-columns:1fr}dialog{padding:12px}}
-@page{size:A4 portrait;margin:12mm}
-@media print{
-:root{background:white}main{width:100%;max-width:none;padding:0}.identity{position:static;text-align:left;margin-top:4px;max-width:none}.identity strong{display:inline;margin-right:6px}
-header{padding-bottom:8px;margin-bottom:12px}h1{font-size:23pt;margin:4px 0}header p,.identity,.identity strong{font-size:10pt}.eyebrow{font-size:8pt}
-.projects{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.card{padding:8px;break-inside:avoid}.card h3{font-size:13pt;margin:4px 0 8px}.card dl{font-size:9.5pt;grid-template-columns:65px 1fr;gap:3px 4px}.tags li,.capabilities li{font-size:8.5pt}.transfer{margin-top:12px;break-inside:avoid}.transfer p,footer{font-size:9pt}.actions,dialog{display:none!important}
+:root {
+  color-scheme: light;
+  --paper: #f6f5f2;
+  --surface: #fff;
+  --ink: #242433;
+  --muted: #4f505f;
+  --line: #dedde4;
+  --accent: #614695;
+  --tint: #f1ecf8;
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.45;
 }
+* { box-sizing: border-box; }
+body { margin: 0; }
+body:has(dialog[open]) { overflow: hidden; }
+main { max-width: 1250px; margin: auto; padding: 24px 32px 22px; }
+h1, h2, h3, h4, p, figure, ul, ol { margin: 0; }
+button, a { color: var(--accent); }
+button { font: inherit; cursor: pointer; }
+button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+[hidden] { display: none !important; }
+.eyebrow { font-size: .76rem; font-weight: 700; letter-spacing: .045em; color: var(--accent); }
+#header { position: relative; padding-bottom: 16px; border-bottom: 1px solid var(--line); margin-bottom: 17px; }
+.identity { position: absolute; top: 0; right: 0; font-size: 1rem; }
+h1 { font-size: clamp(1.6rem, 2.95vw, 2.25rem); letter-spacing: -.035em; line-height: 1.08; margin: 8px 0 12px; }
+#header p { color: var(--muted); font-size: .96rem; }
+#projects-title { font-size: 1.05rem; margin-bottom: 9px; }
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+[data-theme="2"] { --accent: #096a64; --tint: #e7f5f1; }
+[data-theme="3"] { --accent: #8a461f; --tint: #f9eee4; }
+[data-theme="4"] { --accent: #963c67; --tint: #faedf3; }
 
-.card{background:var(--surface);border-radius:12px;transition:border-color 160ms ease,box-shadow 160ms ease}
-.card:focus-within,.card:hover{border-color:var(--accent);box-shadow:0 3px 12px #25262812}
-.open{border-radius:5px;transition:background-color 160ms ease,color 160ms ease}
-dialog{border-radius:14px;background:var(--paper)}
-dialog[open]{animation:present 180ms ease-out}
-@keyframes present{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.presentation-bar{margin-top:12px;padding:6px 12px;border-radius:5px;background:var(--accent);color:white;font-size:14px;font-weight:650}
-.story{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px}
-.story button{min-width:0;text-align:left;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);transition:background-color 160ms ease,border-color 160ms ease,box-shadow 160ms ease}
-.story button strong,.story button span{display:block}.story button span{font-size:13px;color:var(--muted);margin-top:3px}
-.story button:hover{border-color:var(--accent)}.story button[aria-pressed=true]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
-.story.has-focus button[aria-pressed=false]{background:transparent;color:var(--muted)}
-.sample-stage{height:clamp(160px,42vh,480px);border-radius:8px;background:var(--surface)}
-.sample-stage>div,.sample-stage>img:not([hidden]),.sample-stage>video:not([hidden]){animation:present 160ms ease-out}
-@media(max-width:550px){.story{grid-template-columns:1fr}.story button{padding:5px 8px}.story button span{display:inline;margin-left:8px}.story button strong{display:inline}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
-@media print{.card{background:white;box-shadow:none!important}}
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .82fr);
+  align-items: center;
+  gap: 13px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 12px 13px;
+  transition: box-shadow 160ms ease, border-color 160ms ease;
+}
+.card:focus-within, .card:hover { box-shadow: 0 3px 14px #25243814; border-color: var(--accent); }
+.card h3 { margin: 5px 0; font-size: clamp(1.04rem, 1.52vw, 1.24rem); line-height: 1.18; letter-spacing: -.025em; }
+.card p { font-size: .87rem; color: var(--muted); }
+.tags { padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 4px; margin-top: 9px; }
+.tags li { border-radius: 4px; padding: 1px 6px; background: var(--tint); color: var(--accent); font-size: .72rem; font-weight: 650; }
+.explore { margin-top: 8px; border: 0; background: transparent; padding: 3px 0; font-size: .85rem; font-weight: 700; text-align: left; }
+.explore:hover { text-decoration: underline; }
+.preview { min-width: 0; }
+.preview-frame, .report-thumb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--tint);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.preview-frame img, .report-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: var(--surface); }
+.preview figcaption { margin-top: 4px; font-size: .72rem; color: var(--muted); }
+.media-placeholder { padding: 9px; font-size: .78rem; text-align: center; color: var(--muted); }
+.transfer { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 13px; border-top: 1px solid var(--line); margin-top: 16px; padding-top: 10px; }
+.transfer h2 { font-size: .9rem; }
+.transfer p, footer { font-size: .82rem; color: var(--muted); }
+footer { margin-top: 7px; }
 
-@media screen{
-:root{--paper:#f5f2fb;--surface:#fff;--ink:#22223c;--muted:#49485e;--accent:#5842b8;--line:#d9d4e9;background:linear-gradient(125deg,#eee9ff 0%,#f7f5ff 50%,#edf8f7 100%) fixed}
-header{border-bottom:1px solid #c3b8e2}h1{color:#30256a}.card{border:1px solid var(--card-line);border-top:4px solid var(--card-accent);background:var(--card-tint);--card-accent:#6545be;--card-tint:#fbf9ff;--card-line:#d9cff4}
-.card:nth-child(2){--card-accent:#087b76;--card-tint:#f5fcfa;--card-line:#b9e3de}
-.card:nth-child(3){--card-accent:#9a4b17;--card-tint:#fff9f2;--card-line:#ecd0b7}
-.card:nth-child(4){--card-accent:#ad386c;--card-tint:#fff7fb;--card-line:#ecc7da}
-.card .eyebrow,.card .open{color:var(--card-accent)}.card .open{border-color:var(--card-accent)}.card .open:hover{background:var(--card-accent);color:white}
-.card .tags li{background:white;border-color:var(--card-line);border-radius:100px}
-dialog{background:#f8f6ff;border-color:#7662ba}.presentation-bar{background:#5842a1}
-.story button[aria-pressed=true]{background:#e7defc}.sample-stage{background:#eeedf8;height:clamp(155px,45vh,540px)}
-.sample-links{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
-.sample-links button{font-size:12px;border-radius:100px;border:1px solid #d6ccef;background:#fff;padding:4px 9px;transition:background-color 160ms,color 160ms}
-.sample-links button[aria-current=true]{color:white;background:#5842a1;border-color:#5842a1}
+dialog {
+  width: min(1200px, calc(100% - 24px));
+  height: min(760px, calc(100dvh - 24px));
+  max-width: none;
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
 }
+dialog[open] { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; animation: present 180ms ease-out; }
+dialog::backdrop { background: #24243399; }
+.case-top, .pager { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px clamp(14px, 2.3vw, 28px); background: var(--surface); }
+.case-top { border-bottom: 1px solid var(--line); }
+.case-top h2 { font-size: .96rem; line-height: 1.3; }
+.pager { border-top: 1px solid var(--line); }
+.pager span { font-size: .82rem; font-weight: 650; text-align: center; }
+#position { font-variant-numeric: tabular-nums; }
+.control {
+  flex-shrink: 0;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--surface);
+  padding: 6px 10px;
+  min-height: 36px;
+  font-size: .84rem;
+  font-weight: 680;
+}
+.control:hover { background: var(--tint); }
+.control[aria-disabled="true"] { color: var(--muted); border-color: var(--line); cursor: default; background: var(--surface); }
+.control.primary:not([aria-disabled="true"]) { background: var(--accent); color: white; }
+.case-body { overflow: auto; overscroll-behavior: contain; scrollbar-gutter: stable; padding: clamp(14px, 2.1vw, 26px); }
+.slide { animation: present 160ms ease-out; }
+@keyframes present { from { opacity: .4; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+.slide h3 { font-size: clamp(1.45rem, 2.65vw, 2rem); letter-spacing: -.035em; line-height: 1.12; margin: 4px 0 6px; }
+.lead { color: var(--muted); max-width: 80ch; }
+.visuals { display: grid; gap: 12px; margin-top: 15px; }
+.section-title { font-size: .9rem; margin-bottom: 6px; }
+.flow {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+}
+.flow li {
+  position: relative;
+  align-content: center;
+  min-width: 0;
+  min-height: 52px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  padding: 8px 9px;
+  border-radius: 7px;
+  font-size: .87rem;
+  font-weight: 650;
+}
+.flow li:not(:last-child)::after {
+  content: '→'; position: absolute; left: calc(100% + 3px); top: 50%; transform: translateY(-50%); color: var(--accent); font-weight: 750;
+}
+.architecture li { align-content: start; }
+.architecture li:nth-child(1) { border-top-color: #5e647b; }
+.architecture li:nth-child(2) { border-top-color: #23736e; }
+.architecture li:nth-child(3) { border-top-color: #66539b; }
+.architecture li:nth-child(4) { border-top-color: #3b5f87; }
+.architecture li span { display: block; margin-top: 4px; font-size: .78rem; font-weight: 450; color: var(--muted); }
+.sources { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+.sources strong { border-radius: 4px; background: var(--tint); padding: 2px 6px; font-size: .78rem; }
+.branch { height: 17px; width: 100%; margin: 0; position: relative; }
+.branch::before { content: ''; position: absolute; right: 12.5%; height: 100%; border-right: 1px solid var(--accent); }
+.branch::after { content: ''; position: absolute; left: 30%; right: 12.5%; bottom: 0; border-bottom: 1px solid var(--accent); }
+.audiences { display: grid; grid-template-columns: 1.5fr 1fr; gap: 10px; }
+.audience { position: relative; margin-top: 8px; padding: 8px 10px; border: 1px solid var(--line); background: var(--surface); border-radius: 7px; min-width: 0; }
+.audience::before { content: ''; position: absolute; top: -9px; left: 50%; height: 8px; border-left: 1px solid var(--accent); }
+.audience h4 { font-size: .92rem; color: var(--accent); }
+.audience p { font-size: .8rem; color: var(--muted); }
+.report-list { display: grid; grid-template-columns: repeat(var(--columns), minmax(0, 1fr)); gap: 6px; margin-top: 6px; }
+.report-button { display: block; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); padding: 5px; text-align: left; min-width: 0; }
+.report-button:hover { border-color: var(--accent); background: var(--tint); }
+.report-button .report-thumb { aspect-ratio: 19 / 8; }
+.report-button strong { display: block; margin-top: 3px; font-size: .76rem; line-height: 1.25; }
+.compare { display: grid; grid-template-columns: repeat(var(--columns), minmax(0, 1fr)); gap: 9px; }
+.compare article { background: var(--surface); border: 1px solid var(--line); border-radius: 7px; padding: 10px 12px; }
+.compare article:last-child { border-color: var(--line); background: var(--tint); }
+.compare h4 { color: var(--accent); font-size: 1rem; margin-bottom: 4px; }
+.compare ul, .future ul { padding-left: 1.1em; font-size: .9rem; }
+.compare li + li, .future li + li { margin-top: 3px; }
+.takeaway { padding: 10px 13px; margin-top: 12px; background: var(--tint); border-left: 3px solid var(--accent); border-radius: 4px; font-weight: 650; }
+.metric { display: flex; flex-wrap: wrap; align-items: baseline; gap: 1px 13px; color: var(--accent); margin-top: 9px; }
+.metric strong { font-size: clamp(1.65rem, 3.5vw, 2.75rem); letter-spacing: -.045em; line-height: 1.1; }
+.metric span { font-size: .95rem; font-weight: 650; }
+.future { margin-top: 14px; }
+.future ul { display: flex; flex-wrap: wrap; gap: 3px 26px; }
+.future li + li { margin-top: 0; }
+.evidence-groups { display: grid; gap: 7px; }
+.evidence-previews { display: flex; flex-wrap: wrap; gap: 8px; }
+.evidence-previews .report-button { width: min(100%, 176px); }
+.evidence-group { display: flex; gap: 6px; flex-wrap: wrap; align-items: baseline; }
+.evidence-group > strong { font-size: .83rem; margin-right: 4px; }
+.chip { padding: 4px 8px; font-size: .78rem; border: 1px solid var(--line); background: var(--surface); border-radius: 5px; }
+.chip:hover, .chip[aria-current="true"] { background: var(--tint); border-color: var(--accent); }
+.tech { margin-top: 12px; color: var(--muted); font-size: .87rem; }
+.tech summary { font-weight: 675; color: var(--accent); cursor: pointer; }
+.tech p { margin-top: 5px; }
+.sample-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; margin-bottom: 7px; }
+.sample-bar .control { min-height: 32px; }
+.sample-list { display: flex; flex-wrap: wrap; gap: 5px; }
+.sample-frame { position: relative; display: grid; place-items: center; height: clamp(120px, calc(100dvh - 285px), 420px); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; margin-top: 8px; }
+.sample-frame img, .sample-frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.sample-view figcaption { padding-top: 6px; font-size: .84rem; color: var(--muted); }
+.media-actions { display: flex; gap: 6px; }
 
-@media screen {
-dialog{margin:auto;max-height:calc(100dvh - 16px);padding:12px 20px}
-.story[hidden],.pager [hidden]{display:none}
-.sample-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:8px}
-.sample-group{min-width:0}.sample-group strong{font-size:14px;color:var(--accent)}
-.sample-group p{font-size:12px;margin:2px 0 5px}
-.sample-buttons{display:flex;flex-wrap:wrap;gap:4px}
-.sample-stage{position:relative;display:grid;grid-template:minmax(0,1fr)/minmax(0,1fr);height:clamp(125px,calc(100dvh - 340px),540px)}
-.sample-stage img,.sample-stage video{position:absolute;inset:0;display:block;width:100%;height:100%;min-width:0;min-height:0;object-fit:contain;animation:none!important}
-.sample-stage [hidden]{display:none}
-.pager{position:sticky;bottom:0;background:#f8f6ff;padding:6px 0;z-index:1}
-.pager .play{background:#5842a1;color:white;min-height:38px;padding-inline:18px}
-@media(max-height:620px){
-  .presentation-bar{display:none}.story{margin-top:6px}.story button{padding:4px 8px}
-  .sample-stage{height:clamp(100px,calc(100dvh - 300px),270px)}
+@media (max-width: 920px) {
+  .card { grid-template-columns: minmax(0, 1fr) minmax(0, .64fr); }
 }
+@media (max-width: 720px) {
+  main { padding: 16px; }
+  .projects { grid-template-columns: 1fr; }
+  .flow { grid-template-columns: 1fr; gap: 13px; }
+  .flow li { min-height: 0; }
+  .flow li:not(:last-child)::after { content: '↓'; left: 14px; top: calc(100% - 2px); transform: none; line-height: 1; }
+  .audiences { grid-template-columns: 1fr; margin-top: 8px; }
+  .branch, .audience::before { display: none; }
+  .audience { margin-top: 0; }
+  .compare { grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); }
 }
-.card dd.outcome{font-weight:700;color:var(--card-accent,var(--accent))}
+@media (max-width: 440px) {
+  .identity { position: static; margin-top: 4px; }
+  .card { grid-template-columns: 1fr; }
+  .case-top { gap: 7px; }
+  .case-top .control { font-size: .74rem; white-space: normal; }
+  .case-top h2 { font-size: .83rem; }
+}
+@media (max-height: 625px) and (min-width: 721px) {
+  .case-body { padding-block: 11px; }
+  .case-top, .pager { padding-block: 6px; }
+  .visuals { margin-top: 9px; gap: 8px; }
+  .flow li { padding-block: 5px; min-height: 40px; }
+  .report-button .report-thumb { aspect-ratio: 24 / 8; }
+  .tech, .future { margin-top: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+@page { size: A4 portrait; margin: 12mm; }
+@media print {
+  :root, .card { background: #fff; }
+  body:has(dialog[open]) { overflow: visible; }
+  main { padding: 0; }
+  .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card { break-inside: avoid; box-shadow: none !important; }
+  .explore, dialog { display: none !important; }
+}
 </style>
 </head>
 <body>
 <main>
-<header id="header"></header>
-<section aria-labelledby="projects-title"><h2 id="projects-title">Selected Projects</h2><div class="projects" id="projects"></div></section>
-<section class="transfer" aria-labelledby="transfer-title"><h2 id="transfer-title">How this maps to the role</h2><ul class="capabilities" id="capabilities"></ul><p id="transfer-note"></p></section>
-<footer id="footer"></footer>
+  <header id="header"></header>
+  <section aria-labelledby="projects-title">
+    <h2 id="projects-title">Selected Projects</h2>
+    <div class="projects" id="projects"></div>
+  </section>
+  <section class="transfer" aria-labelledby="transfer-title">
+    <h2 id="transfer-title">How this maps to the role</h2>
+    <p id="capabilities"></p>
+  </section>
+  <footer id="footer"></footer>
 </main>
-<dialog id="detail" aria-labelledby="detail-title" aria-describedby="detail-purpose">
-  <form method="dialog"><button class="open" autofocus>Close</button></form>
-  <h2 id="detail-title"></h2><p id="detail-purpose"></p>
-  <div class="presentation-bar">Project Walkthrough</div>
-  <div class="story" id="story" role="group" aria-label="Highlight a project step"></div>
-  <nav class="sample-links" id="sample-links" aria-label="Jump to sample"></nav>
-  <figure><div class="sample-stage" id="sample-stage"></div><figcaption aria-live="polite"><strong id="sample-title"></strong><span id="sample-caption"></span></figcaption></figure>
-  <nav class="pager" aria-label="Sample navigation"><button class="open" id="previous" type="button">Previous</button><button class="open play" id="play" type="button" hidden>Play Video</button><span id="sample-position"></span><button class="open" id="next" type="button">Next</button></nav>
+
+<dialog id="detail" aria-labelledby="detail-title">
+  <div class="case-top">
+    <h2 id="detail-title"></h2>
+    <form method="dialog"><button class="control" autofocus>Back to Portfolio</button></form>
+  </div>
+  <div class="case-body" id="case-body"></div>
+  <nav class="pager" aria-label="Case study stages">
+    <button class="control" id="previous" type="button">Previous</button>
+    <span aria-live="polite"><span id="position"></span><span aria-hidden="true"> · </span><span id="step-name"></span></span>
+    <button class="control primary" id="next" type="button">Next</button>
+  </nav>
 </dialog>
+
 <script>
 "use strict";
-// Edit project summaries, captions and local sample paths here. Use approved media only.
+// Edit project stages, sample captions and local media paths here. Use reviewed media only.
 const portfolio = {
   "name": "Skyla Zhao",
   "eyebrow": "DATA ANALYTICS & REPORTING PORTFOLIO",
   "headline": "From Operational Data to Trusted Decisions",
-  "projectActions": [
-    "Open dashboard →",
-    "Open workbook →",
-    "Open notebook →",
-    "See automation"
-  ],
   "statement": "Transforming complex operational data into reliable reporting, actionable insights, and efficient workflows.",
   "projects": [
     {
       "category": "Business Intelligence",
       "title": "Billing Operations Performance Dashboard",
-      "challenge": "Fragmented data limited visibility into billing progress and exceptions.",
-      "solution": "Centralized KPIs with drill-down analysis across cycles, routes and accounts.",
-      "outcome": "Reduced manual billing checks by approximately 70%.",
       "tools": [
         "Power BI",
-        "DAX",
         "Power Query",
-        "Data Modeling"
+        "DAX"
       ],
-      "purpose": "Centralized reporting for billing progress, exception investigation and operational follow-up.",
       "samples": [
         {
           "title": "Operational Overview",
@@ -144,21 +306,181 @@ const portfolio = {
           "kind": "image",
           "caption": "Filters the account view by address using explicitly synthetic streets and units."
         }
+      ],
+      "summary": "Centralized operational reporting for analysts and management.",
+      "preview": 0,
+      "previewLabel": "Available during the interview",
+      "stages": [
+        {
+          "title": "Fragmented Systems. Too Many Manual Steps.",
+          "lead": "Operational reporting depended on navigating multiple systems and manually checking billing progress.",
+          "visuals": [
+            {
+              "kind": "flow",
+              "label": "A · Manual navigation",
+              "nodes": [
+                "Open system",
+                "Navigate menus",
+                "Select report",
+                "Apply filters",
+                "Review results"
+              ]
+            },
+            {
+              "kind": "compare",
+              "label": "B · Fragmented sources",
+              "cards": [
+                {
+                  "title": "Cognos",
+                  "items": [
+                    "Open source reports and retrieve billing information."
+                  ]
+                },
+                {
+                  "title": "Databricks",
+                  "items": [
+                    "Access a separate data environment and consolidate findings."
+                  ]
+                }
+              ]
+            }
+          ],
+          "takeaway": "Analysts lacked a single, consistent view of operational progress and exceptions."
+        },
+        {
+          "title": "From Fragmented Sources to Actionable Reporting",
+          "lead": "A centralized reporting workflow using Power Query, data modeling, and Power BI.",
+          "visuals": [
+            {
+              "kind": "architecture",
+              "nodes": [
+                {
+                  "title": "Data sources",
+                  "sources": [
+                    "Cognos",
+                    "Databricks"
+                  ]
+                },
+                {
+                  "title": "Power Query",
+                  "lines": [
+                    "Ingest and combine data",
+                    "Prepare inputs for reporting"
+                  ]
+                },
+                {
+                  "title": "Power BI semantic model",
+                  "lines": [
+                    "Table relationships and KPI definitions",
+                    "DAX measures and reconciliation checks"
+                  ]
+                },
+                {
+                  "title": "Power BI reporting",
+                  "lines": [
+                    "Operational and management views"
+                  ]
+                }
+              ],
+              "audiences": [
+                {
+                  "title": "Analysts",
+                  "detail": "Monitor exceptions and investigate individual records.",
+                  "reports": [
+                    {
+                      "sample": 1,
+                      "title": "Route Details"
+                    },
+                    {
+                      "sample": 2,
+                      "title": "Unbilled Account Details"
+                    },
+                    {
+                      "sample": 4,
+                      "title": "Address Search"
+                    }
+                  ]
+                },
+                {
+                  "title": "Managers",
+                  "detail": "Review progress and prioritize follow-up.",
+                  "reports": [
+                    {
+                      "sample": 0,
+                      "title": "Billing Overview"
+                    },
+                    {
+                      "sample": 3,
+                      "title": "Cycle Performance"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "technical": [
+            [
+              "Transformation",
+              "Power Query prepared reporting inputs from the Cognos and Databricks sources. Confirm the exact import paths and refresh cadence before presenting them as implemented."
+            ],
+            [
+              "Model and measures",
+              "Explain how fact and dimension relationships support cycle, route and account views. Discuss DAX definitions for billed, unbilled and completion KPIs."
+            ],
+            [
+              "Validation",
+              "The synthetic overview provides a simple cross-check: 2,232 billed + 539 unbilled = 2,771 total, and 2,232 ÷ 2,771 rounds to 80.55%."
+            ],
+            [
+              "Audience mapping",
+              "The five titles match the visible report navigation. The grouping describes how the pages can be used during the interview."
+            ]
+          ]
+        },
+        {
+          "title": "Less Manual Checking. Better Operational Visibility.",
+          "metric": {
+            "value": "~70%",
+            "label": "Reduction in manual billing check time"
+          },
+          "visuals": [
+            {
+              "kind": "compare",
+              "cards": [
+                {
+                  "title": "Before",
+                  "items": [
+                    "Separate systems and manual navigation",
+                    "Repetitive billing checks",
+                    "Fragmented status and exception information"
+                  ]
+                },
+                {
+                  "title": "After",
+                  "items": [
+                    "Centralized reporting and consistent KPIs",
+                    "Cycle-, route- and account-level investigation",
+                    "Views for analysts and management"
+                  ]
+                }
+              ]
+            }
+          ],
+          "future": [
+            "Automate more refresh and validation steps",
+            "Explore proactive exception alerts and historical trends"
+          ]
+        }
       ]
     },
     {
       "category": "Operational Controls",
       "title": "Billing Reconciliation & Exception Detection",
-      "challenge": "Manual comparisons made discrepancies hard to investigate.",
-      "solution": "Standardized inputs, matched records and flagged exceptions.",
-      "outcome": "Repeatable reconciliation and structured exception review.",
       "tools": [
         "Excel",
         "Power Query",
-        "XLOOKUP",
-        "Pivot Tables"
+        "XLOOKUP"
       ],
-      "purpose": "Make billing discrepancies easier to identify and investigate.",
       "samples": [
         {
           "title": "Reconciliation Overview",
@@ -170,21 +492,120 @@ const portfolio = {
           "kind": "image",
           "caption": "Synthetic account and meter IDs show how exceptions are categorized, prioritized and tracked."
         }
+      ],
+      "summary": "Standardized reconciliation to identify and investigate billing discrepancies.",
+      "preview": 0,
+      "previewLabel": "Available during the interview",
+      "stages": [
+        {
+          "title": "Two Reports. One Reconciliation Problem.",
+          "lead": "Inconsistent formats made record-to-record comparison and discrepancy investigation difficult.",
+          "visuals": [
+            {
+              "kind": "compare",
+              "label": "Inputs shown in the demonstration workbook",
+              "cards": [
+                {
+                  "title": "MRV records",
+                  "items": [
+                    "Meter-reading verification data",
+                    "Account, meter and usage fields"
+                  ]
+                },
+                {
+                  "title": "BJV records",
+                  "items": [
+                    "Billing journal verification data",
+                    "Billing values to compare with source records"
+                  ]
+                }
+              ]
+            }
+          ],
+          "takeaway": "Manual matching made it difficult to review exceptions consistently."
+        },
+        {
+          "title": "From Source Reports to an Exception Queue",
+          "lead": "Excel and Power Query standardize the comparison before discrepancies are classified for review.",
+          "visuals": [
+            {
+              "kind": "flow",
+              "label": "Reconciliation workflow",
+              "nodes": [
+                "Source reports",
+                "Excel / Power Query",
+                "Standardize and match",
+                "XLOOKUP / rules",
+                "Classify exceptions",
+                "Pivot summary and review"
+              ]
+            },
+            {
+              "kind": "evidence",
+              "label": "Workbook evidence",
+              "samples": [
+                0,
+                1
+              ]
+            }
+          ],
+          "technical": [
+            [
+              "Review fields",
+              "The demonstration shows cycle, account, utility and meter. The exact composite matching key is not documented in the available samples."
+            ],
+            [
+              "Matching controls",
+              "The overview shows duplicate-key and unmatched-record checks in both directions to surface one-to-many and missing-record issues."
+            ],
+            [
+              "Classification",
+              "The exception list distinguishes usage mismatches, read mismatches, duplicate keys and records missing from either source."
+            ]
+          ],
+          "artifact": {
+            "label": "Open workbook"
+          }
+        },
+        {
+          "title": "A Repeatable Way to Review Discrepancies",
+          "lead": "The reconciliation turns comparison results into an organized list for investigation.",
+          "visuals": [
+            {
+              "kind": "compare",
+              "cards": [
+                {
+                  "title": "Before",
+                  "items": [
+                    "Compare separate reports manually",
+                    "Identify and organize mismatches by hand"
+                  ]
+                },
+                {
+                  "title": "After",
+                  "items": [
+                    "Use a repeatable matching and exception review workflow",
+                    "Prioritize discrepancies by exception type and severity"
+                  ]
+                }
+              ]
+            }
+          ],
+          "future": [
+            "Add a standard review log for exception resolution",
+            "Explore repeatable checks for new reporting cycles"
+          ]
+        }
       ]
     },
     {
       "category": "Data Quality & ETL",
       "title": "Data Profiling, Cleaning & Validation",
-      "challenge": "Raw data contained duplicates, gaps and inconsistencies.",
-      "solution": "Profiled and cleaned data with Python and SQL in Jupyter",
-      "outcome": "Repeatable data preparation with documented checks.",
       "tools": [
         "Python",
         "SQL",
-        "Pandas",
         "Jupyter"
       ],
-      "purpose": "Prepare operational data for analysis with repeatable checks.",
       "samples": [
         {
           "title": "Table-Level Profiling",
@@ -201,21 +622,137 @@ const portfolio = {
           "kind": "image",
           "caption": "Jupyter chart of posted billing cycles across synthetic monthly snapshots."
         }
+      ],
+      "summary": "Turned inconsistent operational data into validated, analysis-ready datasets.",
+      "preview": 2,
+      "previewLabel": "Available during the interview",
+      "stages": [
+        {
+          "title": "Raw Records Can Mislead Reporting",
+          "lead": "Profiling made quality risks visible before the data was used in downstream analysis.",
+          "visuals": [
+            {
+              "kind": "risks",
+              "label": "Raw-data checks",
+              "cards": [
+                {
+                  "title": "Duplicates",
+                  "items": [
+                    "Repeated rows or keys can inflate results."
+                  ]
+                },
+                {
+                  "title": "Missing values",
+                  "items": [
+                    "Blank fields can leave incomplete groups or joins."
+                  ]
+                },
+                {
+                  "title": "Types & relationships",
+                  "items": [
+                    "Invalid identifiers or mixed types can cause failed matches."
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "evidence",
+              "label": "Profiling evidence",
+              "samples": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Profile, Clean, Then Validate",
+          "lead": "Python and SQL in Jupyter made the checks reproducible and helped assess which fields were suitable for modeling.",
+          "visuals": [
+            {
+              "kind": "flow",
+              "label": "Data-quality pipeline",
+              "nodes": [
+                "Raw data",
+                "Python / Pandas profiling",
+                "Investigate quality issues",
+                "Clean and transform",
+                "SQL validation",
+                "Analysis-ready data"
+              ]
+            },
+            {
+              "kind": "evidence",
+              "label": "Notebook evidence",
+              "samples": [
+                0,
+                1
+              ]
+            }
+          ],
+          "technical": [
+            [
+              "Dataset grain",
+              "The notebook tests candidate keys for duplicate combinations and missing key fields before downstream joins."
+            ],
+            [
+              "Column profiling",
+              "Inspect data types, missing rows and distinct non-null values. These checks flag fields that need normalization or different handling."
+            ],
+            [
+              "Validation",
+              "Discuss confirming record counts, identifier integrity and business rules after cleaning. The available screenshots show profiling, not detailed SQL validation output."
+            ]
+          ],
+          "artifact": {
+            "label": "Open notebook"
+          }
+        },
+        {
+          "title": "Documented Checks for More Reliable Analysis",
+          "lead": "A repeatable workflow makes quality risks easier to investigate before reporting.",
+          "visuals": [
+            {
+              "kind": "compare",
+              "cards": [
+                {
+                  "title": "Before",
+                  "items": [
+                    "Inconsistent inputs and undocumented quality issues",
+                    "Extra investigation when records did not reconcile"
+                  ]
+                },
+                {
+                  "title": "After",
+                  "items": [
+                    "Repeatable preparation with documented checks",
+                    "Analysis-ready outputs for downstream reporting"
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "evidence",
+              "label": "Synthetic downstream analysis",
+              "samples": [
+                2
+              ]
+            }
+          ],
+          "future": [
+            "Expand automated assertions for incoming datasets",
+            "Track recurring quality issues over time"
+          ]
+        }
       ]
     },
     {
       "category": "Intelligent Automation",
       "title": "Workflow Automation & AI-Assisted Processing",
-      "challenge": "PDF invoices and legacy checks required repeated manual work.",
-      "solution": "Built a PDF-to-Excel tool with AI-assisted coding and a separate legacy automation.",
-      "outcome": "Processed PDF invoices into structured Excel data in under 5 min.",
       "tools": [
-        "AI-assisted coding",
-        "Power Automate",
         "VBA",
+        "Power Automate",
         "Excel"
       ],
-      "purpose": "Two separate tools for invoice conversion and routine work in legacy systems.",
       "samples": [
         {
           "title": "Document Inputs",
@@ -253,18 +790,137 @@ const portfolio = {
           "caption": "Legacy form and controls shown at 1.35× speed. Record values are masked."
         }
       ],
-      "groups": [
+      "summary": "Automated repetitive invoice processing and operational checks.",
+      "preview": 0,
+      "previewLabel": "Available during the interview",
+      "stages": [
         {
-          "title": "A · PDF Invoice to Excel",
-          "description": "Built with AI-assisted coding. Convert PDF invoice line items into structured Excel data for review.",
-          "start": 0,
-          "end": 5
+          "title": "Routine Work Took Too Many Manual Steps",
+          "lead": "Invoice processing and operational checks presented two separate opportunities to reduce repetitive work.",
+          "visuals": [
+            {
+              "kind": "flow",
+              "label": "Invoice processing · manual workflow",
+              "nodes": [
+                "Open PDF invoice",
+                "Read line items",
+                "Copy into Excel",
+                "Check and organize values"
+              ]
+            },
+            {
+              "kind": "flow",
+              "label": "Legacy operations · manual workflow",
+              "nodes": [
+                "Prepare the workbook",
+                "Find records in the legacy system",
+                "Run routine checks or cleanup"
+              ]
+            }
+          ],
+          "takeaway": "Analysts spent time moving information between tools and repeating routine checks."
         },
         {
-          "title": "B · Legacy System Automation",
-          "description": "Automate repetitive checks and deletion steps in older systems to reduce manual work.",
-          "start": 5,
-          "end": 7
+          "title": "Two Tools for Two Different Workflows",
+          "lead": "The PDF-to-Excel tool was built with AI-assisted coding. VBA and Power Automate support a separate legacy workflow.",
+          "visuals": [
+            {
+              "kind": "flow",
+              "label": "A · PDF invoice to Excel",
+              "nodes": [
+                "Import invoice PDF",
+                "Extract line items",
+                "Review and categorize",
+                "Structure data for Excel"
+              ]
+            },
+            {
+              "kind": "flow",
+              "label": "B · Legacy automation",
+              "nodes": [
+                "Prepare files with VBA",
+                "Run routine legacy checks and cleanup with Power Automate"
+              ]
+            },
+            {
+              "kind": "evidence",
+              "label": "Workflow walkthroughs",
+              "samples": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              "groups": [
+                {
+                  "title": "PDF-to-Excel tool",
+                  "samples": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4
+                  ]
+                },
+                {
+                  "title": "Legacy automation",
+                  "samples": [
+                    5,
+                    6
+                  ]
+                }
+              ]
+            }
+          ],
+          "technical": [
+            [
+              "Development approach",
+              "AI-assisted coding supported development of the invoice tool. The review samples show a human checking extracted and categorized information."
+            ],
+            [
+              "Invoice evidence",
+              "The screenshots show document input, matched lines, category totals and an invoice preview. The preview is a separate screen from the structured Excel output."
+            ],
+            [
+              "Legacy evidence",
+              "The redacted videos show workbook preparation controls and part of the legacy-system workflow."
+            ]
+          ]
+        },
+        {
+          "title": "Less Time Moving Data Between Tools",
+          "metric": {
+            "value": "Under 5 minutes",
+            "label": "Convert PDF invoices into structured Excel data"
+          },
+          "visuals": [
+            {
+              "kind": "compare",
+              "cards": [
+                {
+                  "title": "Before",
+                  "items": [
+                    "Manually transfer invoice line items",
+                    "Repeat operational checks and cleanup in legacy tools"
+                  ]
+                },
+                {
+                  "title": "After",
+                  "items": [
+                    "Review extracted data before using it in Excel",
+                    "Automate routine legacy checks and deletion steps"
+                  ]
+                }
+              ]
+            }
+          ],
+          "future": [
+            "Explore more invoice formats",
+            "Expand exception handling and audit checks"
+          ]
         }
       ]
     }
@@ -275,196 +931,326 @@ const portfolio = {
     "Exception Investigation",
     "Workflow Automation"
   ],
-  "transferNote": "These projects demonstrate transferable capabilities relevant to data-driven Security Operations, including reliable reporting, operational visibility, and repeatable analytical controls.",
   "footer": "Project summaries for interview discussion."
 };
 
-function add(parent, tag, text, className) {
+const stages = ["The Challenge", "What I Built", "Impact & Next Steps"];
+const dialog = document.getElementById("detail");
+const body = document.getElementById("case-body");
+const previous = document.getElementById("previous");
+const next = document.getElementById("next");
+let project;
+let stageIndex = 0;
+let sampleReturn = null;
+
+function add(parent, tag, text = "", className = "") {
   const element = document.createElement(tag);
   if (text) element.textContent = text;
   if (className) element.className = className;
   parent.append(element);
   return element;
 }
-const header = document.getElementById("header");
-add(header, "div", portfolio.eyebrow, "eyebrow");
-const identity = add(header, "div", "", "identity");
-add(identity, "strong", portfolio.name);
-add(header, "h1", portfolio.headline);
-add(header, "p", portfolio.statement);
 
-const dialog = document.getElementById("detail");
-const stage = document.getElementById("sample-stage");
-const story = document.getElementById("story");
-const sampleLinks = document.getElementById("sample-links");
-const previous = document.getElementById("previous");
-const next = document.getElementById("next");
-const play = document.getElementById("play");
-let currentProject;
-let sampleIndex = 0;
-
-function projectSteps(project) {
-  return [["Challenge", project.challenge], ["Solution", project.solution], ["Outcome", project.outcome]];
+function button(parent, label, className, action) {
+  const element = add(parent, "button", label, className);
+  element.type = "button";
+  element.addEventListener("click", action);
+  return element;
 }
 
-function renderStory(project) {
-  story.replaceChildren();
-  story.classList.remove("has-focus");
-  for (const [index, [label, description]] of projectSteps(project).entries()) {
-    const step = add(story, "button");
-    step.type = "button";
-    step.setAttribute("aria-pressed", "false");
-    add(step, "strong", label);
-    add(step, "span", description);
-    step.addEventListener("click", () => {
-      const selected = step.getAttribute("aria-pressed") === "false";
-      for (const button of story.children) {
-        button.setAttribute("aria-pressed", String(selected && button === step));
-      }
-      story.classList.toggle("has-focus", selected);
-      const linkedSample = project.stepSamples?.[index];
-      if (selected && linkedSample !== undefined) showSample(linkedSample);
-    });
-  }
-}
-
-play.addEventListener("click", () => {
-  const video = stage.querySelector("video");
-  if (!video) return;
-  if (video.paused) video.play().catch(() => {});
-  else video.pause();
-});
-
-function renderSampleLinks(project) {
-  sampleLinks.replaceChildren();
-  const groups = project.groups || [{start: 0, end: project.samples.length}];
-  for (const group of groups) {
-    const section = add(sampleLinks, "div", "", "sample-group");
-    if (group.title) {
-      add(section, "strong", group.title);
-      add(section, "p", group.description);
-    }
-    const buttons = add(section, "div", "", "sample-buttons");
-    for (let index = group.start; index < group.end; index++) {
-      const button = add(buttons, "button", project.samples[index].title);
-      button.type = "button";
-      button.addEventListener("click", () => showSample(index));
-    }
-  }
-}
-
-function showSample(index) {
-  sampleIndex = index;
-  renderSample();
-}
-
-function clearSample() {
-  stage.querySelector("video")?.pause();
-  stage.replaceChildren();
-}
-
-function renderSample() {
-  const sample = currentProject.samples[sampleIndex];
-  const count = currentProject.samples.length;
-  Array.from(sampleLinks.querySelectorAll("button")).forEach((button, index) => {
-    if (index === sampleIndex) button.setAttribute("aria-current", "true");
-    else button.removeAttribute("aria-current");
-  });
-  document.getElementById("sample-title").textContent = sample.title;
-  document.getElementById("sample-caption").textContent = sample.caption;
-  document.getElementById("sample-position").textContent = (sampleIndex + 1) + " / " + count;
-  previous.setAttribute("aria-disabled", String(sampleIndex === 0));
-  next.setAttribute("aria-disabled", String(sampleIndex === count - 1));
-
-  clearSample();
-  play.hidden = true;
-  play.textContent = "Play Video";
-  const placeholder = add(stage, "div", "", "placeholder");
-  if (!sample.path) {
-    add(placeholder, "strong", "Discuss during the interview");
+function previewImage(frame, sample) {
+  const fallback = add(frame, "span", "", "media-placeholder");
+  fallback.setAttribute("aria-hidden", "true");
+  if (!sample?.path || sample.kind !== "image") {
+    fallback.textContent = "Interview preview";
     return;
   }
-  const message = add(placeholder, "strong", "Loading local sample…");
+  const image = add(frame, "img");
+  image.alt = "";
+  image.hidden = true;
+  image.decoding = "async";
+  image.addEventListener("load", () => {
+    fallback.hidden = true;
+    image.hidden = false;
+  }, { once: true });
+  image.addEventListener("error", () => {
+    fallback.textContent = "Interview preview";
+  }, { once: true });
+  image.src = sample.path;
+}
+
+function list(parent, items) {
+  const element = add(parent, "ul");
+  for (const item of items) add(element, "li", item);
+}
+
+function columnGrid(element, count) {
+  element.style.setProperty("--columns", count);
+  return element;
+}
+
+function flow(parent, nodes, architecture = false) {
+  const route = columnGrid(add(parent, "ol", "", architecture ? "flow architecture" : "flow"), nodes.length);
+  route.setAttribute("aria-label", "Process in order");
+  for (const node of nodes) {
+    const cell = add(route, "li");
+    if (typeof node === "string") {
+      cell.textContent = node;
+      continue;
+    }
+    add(cell, "strong", node.title);
+    if (node.sources) {
+      const sources = add(cell, "div", "", "sources");
+      for (const source of node.sources) add(sources, "strong", source);
+    }
+    for (const line of node.lines ?? []) add(cell, "span", line);
+  }
+}
+
+function renderEvidence(parent, visual) {
+  if (!visual.groups && visual.samples.length <= 2) {
+    const previews = add(parent, "div", "", "evidence-previews");
+    for (const index of visual.samples) {
+      const sample = project.samples[index];
+      const trigger = button(previews, "", "report-button", () => showSample(index, visual.samples, trigger));
+      previewImage(add(trigger, "span", "", "report-thumb"), sample);
+      add(trigger, "strong", sample.title);
+    }
+    return;
+  }
+  const groups = visual.groups ?? [{ samples: visual.samples }];
+  const wrapper = add(parent, "div", "", "evidence-groups");
+  for (const group of groups) {
+    const row = add(wrapper, "div", "", "evidence-group");
+    if (group.title) add(row, "strong", group.title);
+    for (const index of group.samples) {
+      const sample = project.samples[index];
+      const trigger = button(row, sample.title, "chip", () => showSample(index, visual.samples, trigger));
+    }
+  }
+}
+
+function renderArchitecture(parent, visual) {
+  flow(parent, visual.nodes, true);
+  add(parent, "div", "", "branch").setAttribute("aria-hidden", "true");
+  const groups = add(parent, "div", "", "audiences");
+  const indices = visual.audiences.flatMap(group => group.reports.map(report => report.sample));
+  for (const group of visual.audiences) {
+    const audience = add(groups, "section", "", "audience");
+    add(audience, "h4", group.title);
+    add(audience, "p", group.detail);
+    const reports = columnGrid(add(audience, "div", "", "report-list"), group.reports.length);
+    for (const report of group.reports) {
+      const trigger = button(reports, "", "report-button", () => showSample(report.sample, indices, trigger));
+      previewImage(add(trigger, "span", "", "report-thumb"), project.samples[report.sample]);
+      add(trigger, "strong", report.title);
+    }
+  }
+}
+
+function renderVisual(parent, visual) {
+  const region = add(parent, "div");
+  if (visual.label) add(region, "h4", visual.label, "section-title");
+  switch (visual.kind) {
+    case "flow":
+      flow(region, visual.nodes);
+      break;
+    case "architecture":
+      renderArchitecture(region, visual);
+      break;
+    case "compare":
+    case "risks": {
+      const grid = columnGrid(add(region, "div", "", "compare"), visual.cards.length);
+      for (const item of visual.cards) {
+        const card = add(grid, "article");
+        add(card, "h4", item.title);
+        list(card, item.items);
+      }
+      break;
+    }
+    case "evidence":
+      renderEvidence(region, visual);
+      break;
+  }
+}
+
+function clearBody() {
+  body.querySelector("video")?.pause();
+  body.replaceChildren();
+  body.scrollTop = 0;
+}
+
+function renderStage() {
+  sampleReturn = null;
+  clearBody();
+  const stage = project.stages[stageIndex];
+  const slide = add(body, "section", "", "slide");
+  const step = String(stageIndex + 1).padStart(2, "0");
+  add(slide, "p", stages[stageIndex], "eyebrow");
+  add(slide, "h3", stage.title);
+  if (stage.lead) add(slide, "p", stage.lead, "lead");
+  if (stage.metric) {
+    const metric = add(slide, "div", "", "metric");
+    add(metric, "strong", stage.metric.value);
+    add(metric, "span", stage.metric.label);
+  }
+  const visuals = add(slide, "div", "", "visuals");
+  for (const visual of stage.visuals) renderVisual(visuals, visual);
+  if (stage.takeaway) add(slide, "p", stage.takeaway, "takeaway");
+  if (stage.future) {
+    const future = add(slide, "section", "", "future");
+    add(future, "h4", "Next Opportunities", "section-title");
+    list(future, stage.future);
+  }
+  if (stage.technical) {
+    const technical = add(slide, "details", "", "tech");
+    add(technical, "summary", "Technical Details");
+    for (const [label, description] of stage.technical) {
+      const paragraph = add(technical, "p");
+      add(paragraph, "strong", label + ". ");
+      paragraph.append(description);
+    }
+    if (stage.artifact) {
+      const line = add(technical, "p");
+      if (stage.artifact.path) {
+        add(line, "a", stage.artifact.label).href = stage.artifact.path;
+      } else {
+        line.textContent = "Source file unavailable in this portfolio. See the screenshots above.";
+      }
+    }
+  }
+  document.getElementById("position").textContent = step + " / " + String(project.stages.length).padStart(2, "0");
+  document.getElementById("step-name").textContent = stages[stageIndex];
+  previous.setAttribute("aria-disabled", String(stageIndex === 0));
+  next.setAttribute("aria-disabled", String(stageIndex === project.stages.length - 1));
+}
+
+function showSample(index, indices, trigger) {
+  sampleReturn = trigger;
+  clearBody();
+  const sample = project.samples[index];
+  const view = add(body, "section", "", "sample-view");
+  const bar = add(view, "div", "", "sample-bar");
+  const back = button(bar, "Back to stage", "control", closeSample);
+  add(bar, "h3", sample.title);
+  const actions = add(bar, "div", "", "media-actions");
+  const navigation = add(view, "nav", "", "sample-list");
+  navigation.setAttribute("aria-label", "Project samples");
+  for (const candidate of indices) {
+    const chip = button(navigation, project.samples[candidate].title, "chip", () => showSample(candidate, indices, trigger));
+    if (candidate === index) chip.setAttribute("aria-current", "true");
+  }
+  const figure = add(view, "figure");
+  const frame = add(figure, "div", "", "sample-frame");
+  const placeholder = add(frame, "p", sample.path ? "Loading sample…" : "Sample available during the interview", "media-placeholder");
+  add(figure, "figcaption", sample.caption);
+  back.focus();
+  if (!sample.path) return;
+
   const isVideo = sample.kind === "video";
-  const media = add(stage, isVideo ? "video" : "img");
+  const media = add(frame, isVideo ? "video" : "img");
   media.hidden = true;
+  let play;
+  let full;
   if (isVideo) {
     media.controls = true;
     media.preload = "metadata";
     media.setAttribute("aria-label", sample.title);
-    media.addEventListener("play", () => { play.textContent = "Pause Video"; });
-    media.addEventListener("pause", () => { play.textContent = "Play Video"; });
-    media.addEventListener("ended", () => { play.textContent = "Replay Video"; });
+    play = button(actions, "Play Video", "control primary", () => {
+      if (media.paused) {
+        media.play().catch(() => { play.textContent = "Try Play Video Again"; });
+      } else {
+        media.pause();
+      }
+    });
+    play.hidden = true;
+    for (const [event, label] of [["play", "Pause Video"], ["pause", "Play Video"], ["ended", "Replay Video"]]) {
+      media.addEventListener(event, () => { play.textContent = label; });
+    }
   } else {
     media.alt = sample.title;
+    full = add(actions, "a", "Open full size");
+    full.href = sample.path;
+    full.target = "_blank";
+    full.rel = "noopener";
+    full.hidden = true;
   }
-
   media.addEventListener(isVideo ? "loadedmetadata" : "load", () => {
-    placeholder.hidden = true;
     media.hidden = false;
-    if (isVideo) play.hidden = false;
+    placeholder.hidden = true;
+    (play ?? full).hidden = false;
   }, { once: true });
   media.addEventListener("error", () => {
     media.hidden = true;
-    play.hidden = true;
+    (play ?? full).hidden = true;
     placeholder.hidden = false;
-    message.textContent = isVideo ? "Demonstration video unavailable" : "Sample image unavailable";
-    add(placeholder, "div", "Approved local media can be added here.");
+    placeholder.textContent = isVideo ? "Video unavailable" : "Screenshot unavailable";
   }, { once: true });
   media.src = sample.path;
 }
 
-function moveSample(delta) {
-  const target = sampleIndex + delta;
-  if (target < 0 || target >= currentProject.samples.length) return;
-  showSample(target);
+function closeSample() {
+  const trigger = sampleReturn;
+  const label = trigger?.textContent;
+  renderStage();
+  const replacement = Array.from(body.querySelectorAll("button")).find(control => control.textContent === label);
+  replacement?.focus();
 }
 
-previous.addEventListener("click", () => moveSample(-1));
-next.addEventListener("click", () => moveSample(1));
+function moveStage(delta) {
+  const target = stageIndex + delta;
+  if (target < 0 || target >= project.stages.length) return;
+  stageIndex = target;
+  renderStage();
+}
+
+previous.addEventListener("click", () => moveStage(-1));
+next.addEventListener("click", () => moveStage(1));
 dialog.addEventListener("keydown", event => {
   if (event.target instanceof HTMLVideoElement || event.altKey || event.ctrlKey || event.metaKey) return;
   if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
     event.preventDefault();
-    moveSample(event.key === "ArrowLeft" ? -1 : 1);
+    moveStage(event.key === "ArrowLeft" ? -1 : 1);
   }
 });
-dialog.addEventListener("close", clearSample);
+dialog.addEventListener("cancel", event => {
+  if (!sampleReturn) return;
+  event.preventDefault();
+  closeSample();
+});
+dialog.addEventListener("close", clearBody);
 
+const header = document.getElementById("header");
+add(header, "div", portfolio.eyebrow, "eyebrow");
+add(header, "strong", portfolio.name, "identity");
+add(header, "h1", portfolio.headline);
+add(header, "p", portfolio.statement);
 const grid = document.getElementById("projects");
-portfolio.projects.forEach((project, index) => {
+for (const [index, item] of portfolio.projects.entries()) {
   const number = String(index + 1).padStart(2, "0");
   const card = add(grid, "article", "", "card");
-  add(card, "div", number + " / " + project.category, "eyebrow");
-  add(card, "h3", project.title);
-  const list = add(card, "dl");
-  for (const [label, value] of projectSteps(project)) {
-    add(list, "dt", label);
-    add(list, "dd", value, label === "Outcome" ? "outcome" : undefined);
-  }
-  const tags = add(card, "ul", "", "tags");
+  card.dataset.theme = String(index + 1);
+  const copy = add(card, "div");
+  add(copy, "div", number + " / " + item.category, "eyebrow");
+  add(copy, "h3", item.title);
+  add(copy, "p", item.summary);
+  const tags = add(copy, "ul", "", "tags");
   tags.setAttribute("aria-label", "Technologies");
-  for (const tool of project.tools) add(tags, "li", tool);
-  const action = portfolio.projectActions[index];
-  const button = add(add(card, "div", "", "actions"), "button", action, "open");
-  button.type = "button";
-  button.setAttribute("aria-label", action + " · " + project.title);
-  button.addEventListener("click", () => {
-    currentProject = project;
-    sampleIndex = 0;
-    document.getElementById("detail-title").textContent = project.title;
-    document.getElementById("detail-purpose").textContent = project.purpose;
-    story.hidden = Boolean(project.groups);
-    renderStory(project);
-    renderSampleLinks(project);
-    renderSample();
+  for (const tool of item.tools) add(tags, "li", tool);
+  const explore = button(copy, "Explore project", "explore", () => {
+    project = item;
+    stageIndex = 0;
+    dialog.dataset.theme = card.dataset.theme;
+    document.getElementById("detail-title").textContent = number + " / " + item.title;
+    renderStage();
     dialog.showModal();
   });
-});
-
-const capabilities = document.getElementById("capabilities");
-for (const capability of portfolio.capabilities) add(capabilities, "li", capability);
-document.getElementById("transfer-note").textContent = portfolio.transferNote;
+  explore.setAttribute("aria-label", "Explore project " + number + " · " + item.title);
+  const preview = add(card, "figure", "", "preview");
+  previewImage(add(preview, "div", "", "preview-frame"), item.samples[item.preview]);
+  add(preview, "figcaption", item.previewLabel);
+}
+document.getElementById("capabilities").textContent = portfolio.capabilities.join(" · ");
 document.getElementById("footer").textContent = portfolio.footer;
 </script>
 </body>
