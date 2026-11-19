@@ -320,6 +320,24 @@ dialog {
 .demo-previews .report-thumb { min-height: 90px; }
 .demo-previews .report-button strong { font-size: .9rem; margin-top: 6px; }
 @media (max-width: 620px) { .demo-previews { grid-template-columns: 1fr; } }
+
+.process-notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0; }
+.process-notes > div { padding: 9px 12px; border-left: 2px solid var(--line); }
+.process-notes dt { font-weight: 680; color: var(--accent); }
+.process-notes dd { margin: 3px 0 0; color: var(--muted); font-size: .87rem; }
+.kpi-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .68fr); gap: 14px; }
+.kpi-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); font-size: .92rem; }
+.kpi-table th, .kpi-table td { padding: 5px 12px; text-align: left; }
+.kpi-table thead { background: var(--tint); color: var(--accent); }
+.kpi-table tbody tr + tr { border-top: 1px solid var(--line); }
+.kpi-table tbody th { font-weight: 530; }
+.kpi-table thead th:last-child, .kpi-table td { text-align: right; font-variant-numeric: tabular-nums; }
+.kpi-check { align-content: center; background: var(--tint); border: 1px solid var(--line); border-radius: 8px; padding: clamp(14px, 2vw, 25px); }
+.kpi-check strong { display: block; color: var(--accent); font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.05; }
+.kpi-check p { font-weight: 680; margin-top: 5px; }
+.kpi-check small { color: var(--muted); }
+.related-project { margin-top: 15px; }
+@media (max-width: 620px) { .process-notes, .kpi-layout { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -628,163 +646,243 @@ const portfolio = {
     },
     {
       "category": "Data Quality & ETL",
-      "title": "Data Profiling, Cleaning & Validation",
+      "title": "Data Preparation & KPI Validation",
       "tools": [
         "Python",
         "SQL",
+        "Pandas",
         "Jupyter"
       ],
-      "samples": [
-        {
-          "title": "Table-Level Profiling",
-          "kind": "image",
-          "caption": "Jupyter code checks row counts, duplicates and missing cells. Output values are masked."
-        },
-        {
-          "title": "Column-Level Profiling",
-          "kind": "image",
-          "caption": "Jupyter code profiles data types and missing values by column. Sample values are removed."
-        },
-        {
-          "title": "Monthly Billing Trend",
-          "kind": "image",
-          "caption": "Jupyter chart of posted billing cycles across synthetic monthly snapshots."
-        }
+      "summary": "Prepared raw billing data using Python and independently validated reporting KPIs with SQL before Power BI development.",
+      "preview": 6,
+      "previewLabel": "Data quality & KPI validation",
+      "stageLabels": [
+        "Challenge",
+        "Data Profiling & Cleaning",
+        "SQL KPI Validation",
+        "Outcome & Power BI Integration"
       ],
-      "summary": "Turned inconsistent operational data into validated, analysis-ready datasets.",
-      "preview": 0,
-      "previewLabel": "Available during the interview",
       "stages": [
         {
-          "title": "Raw Records Can Mislead Reporting",
-          "lead": "Profiling made quality risks visible before the data was used in downstream analysis.",
+          "title": "Ensuring Reliable Data Before Dashboard Development",
+          "lead": "Raw billing data from multiple sources required profiling, cleaning, and validation before it could be used for reliable operational reporting.",
           "visuals": [
             {
               "kind": "risks",
-              "label": "Raw-data checks",
               "cards": [
                 {
-                  "title": "Duplicates",
+                  "title": "Data Quality",
                   "items": [
-                    "Repeated rows or keys can inflate results."
+                    "Missing values, inconsistent formats, and duplicate records."
                   ]
                 },
                 {
-                  "title": "Missing values",
+                  "title": "Data Structure",
                   "items": [
-                    "Blank fields can leave incomplete groups or joins."
+                    "Different table granularities and relationships needed to be understood before modeling."
                   ]
                 },
                 {
-                  "title": "Types & relationships",
+                  "title": "KPI Accuracy",
                   "items": [
-                    "Invalid identifiers or mixed types can cause failed matches."
+                    "Billing classifications and reporting measures needed independent validation."
                   ]
                 }
-              ]
-            },
-            {
-              "kind": "evidence",
-              "label": "Profiling evidence",
-              "samples": [
-                0
               ]
             }
           ]
         },
         {
-          "title": "Profile, Clean, Then Validate",
-          "lead": "Python and SQL in Jupyter made the checks reproducible and helped assess which fields were suitable for modeling.",
+          "title": "Preparing Analysis-Ready Data with Python",
           "visuals": [
             {
-              "kind": "quality",
-              "label": "Raw data → cleaning → validation",
-              "headers": [
-                "Raw input",
-                "Preparation",
-                "Validation check"
-              ],
-              "rows": [
+              "kind": "flow",
+              "nodes": [
+                "Raw CSV Files",
+                "Data Profiling",
+                "Data Cleaning",
+                "Validation",
+                "Clean Dataset"
+              ]
+            },
+            {
+              "kind": "processNotes",
+              "items": [
                 [
-                  "Duplicate rows or keys",
-                  "Identify duplicate records",
-                  "Check candidate-key uniqueness"
+                  "Data Profiling",
+                  "Schema, missing values, duplicates, and grain."
                 ],
                 [
-                  "Missing fields",
-                  "Profile missing values",
-                  "Review completeness of required fields"
+                  "Data Cleaning",
+                  "Standardized formats, removed exact duplicate meter rows, and flagged invalid records."
                 ],
                 [
-                  "Inconsistent types",
-                  "Normalize data types",
-                  "Check types and row counts"
+                  "Validation",
+                  "Checked record counts, keys, and data quality after transformation."
                 ]
-              ],
-              "tools": "Python / Pandas in Jupyter → SQL validation"
+              ]
             },
             {
               "kind": "evidence",
               "label": "Notebook evidence",
               "samples": [
                 0,
-                1
+                1,
+                2,
+                3
+              ],
+              "featured": [
+                3
               ]
             }
-          ],
-          "technical": [
-            [
-              "Dataset grain",
-              "The notebook tests candidate keys for duplicate combinations and missing key fields before downstream joins."
-            ],
-            [
-              "Column profiling",
-              "Inspect data types, missing rows and distinct non-null values. These checks flag fields that need normalization or different handling."
-            ],
-            [
-              "Validation",
-              "Discuss confirming record counts, identifier integrity and business rules after cleaning. The available screenshots show profiling, not detailed SQL validation output."
-            ]
-          ],
-          "artifact": {
-            "label": "Open notebook"
-          }
+          ]
         },
         {
-          "title": "Documented Checks for More Reliable Analysis",
-          "lead": "A repeatable workflow makes quality risks easier to investigate before reporting.",
+          "title": "Validating Billing KPIs with SQL",
+          "lead": "Independent SQL queries were used to cross-check billing classifications and reporting measures.",
           "visuals": [
+            {
+              "kind": "kpis",
+              "label": "Synthetic data · November 2026 snapshot",
+              "rows": [
+                [
+                  "Eligible Services",
+                  "5,346"
+                ],
+                [
+                  "Active Services",
+                  "5,072"
+                ],
+                [
+                  "Billed Services",
+                  "3,198"
+                ],
+                [
+                  "Unbilled Services",
+                  "2,148"
+                ],
+                [
+                  "First Bill Unbilled",
+                  "630"
+                ],
+                [
+                  "Regular Bill Unbilled",
+                  "1,244"
+                ],
+                [
+                  "Final Pending Unbilled",
+                  "274"
+                ]
+              ],
+              "result": "SQL vs Python Classification Differences",
+              "value": "0",
+              "scope": "Complete service keys in the synthetic snapshot."
+            },
+            {
+              "kind": "evidence",
+              "label": "Notebook evidence",
+              "samples": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "previews": false
+            }
+          ]
+        },
+        {
+          "title": "From Raw Data to Reliable Reporting",
+          "visuals": [
+            {
+              "kind": "flow",
+              "label": "Reporting integration path",
+              "nodes": [
+                "Python Data Preparation",
+                "SQL KPI Validation",
+                "Power BI Data Model",
+                "Operational Dashboard"
+              ]
+            },
             {
               "kind": "compare",
               "cards": [
                 {
-                  "title": "Before",
+                  "title": "Data Reliability",
                   "items": [
-                    "Inconsistent inputs and undocumented quality issues",
-                    "Extra investigation when records did not reconcile"
+                    "Cleaned and validated billing records for downstream analysis."
                   ]
                 },
                 {
-                  "title": "After",
+                  "title": "KPI Consistency",
                   "items": [
-                    "Repeatable preparation with documented checks",
-                    "Analysis-ready outputs for downstream reporting"
+                    "Verified service-level billing classifications across Python and SQL."
+                  ]
+                },
+                {
+                  "title": "Reporting Readiness",
+                  "items": [
+                    "Established data preparation and validation logic to support dashboard development."
                   ]
                 }
               ]
             },
             {
               "kind": "evidence",
-              "label": "Synthetic downstream analysis",
               "samples": [
-                2
-              ]
+                8
+              ],
+              "previews": false
             }
           ],
-          "future": [
-            "Expand automated assertions for incoming datasets",
-            "Track recurring quality issues over time"
-          ]
+          "relatedProject": 0
+        }
+      ],
+      "samples": [
+        {
+          "title": "Source Inspection",
+          "kind": "image",
+          "caption": "Notebook inventory for six synthetic CSV extracts with intentional data-quality issues."
+        },
+        {
+          "title": "Data Profiling",
+          "kind": "image",
+          "caption": "Profiled missing values, duplicates and candidate keys across source tables."
+        },
+        {
+          "title": "Cleaning Logic",
+          "kind": "image",
+          "caption": "Standardized utility codes, removed exact duplicate meter rows and flagged records for review."
+        },
+        {
+          "title": "Cleaning Results",
+          "kind": "image",
+          "caption": "Notebook output summarizing cleaning actions and records flagged for review."
+        },
+        {
+          "title": "Billing Service Classification",
+          "kind": "image",
+          "caption": "Derived service and billing statuses for the synthetic November 2026 snapshot using documented assumptions."
+        },
+        {
+          "title": "SQLite Validation Approach",
+          "kind": "image",
+          "caption": "Recalculated service classifications in SQLite using source fields without relying on Pandas-derived statuses."
+        },
+        {
+          "title": "SQL KPI Results",
+          "kind": "image",
+          "caption": "Service-level SQL results for the synthetic November 2026 snapshot."
+        },
+        {
+          "title": "Validation Summary",
+          "kind": "image",
+          "caption": "Reviewed missing keys and invalid dates and confirmed that unbilled subtypes sum to the unbilled total."
+        },
+        {
+          "title": "Proposed Power BI Data Model",
+          "kind": "image",
+          "caption": "Proposed table grain and model roles. A direct DAX comparison would require matching the period, filters, grain and source snapshot."
         }
       ]
     },
@@ -1069,9 +1167,9 @@ function renderWorktracks(parent, visual) {
 }
 
 function renderEvidence(parent, visual) {
-  if (visual.previews || (!visual.groups && visual.samples.length <= 2)) {
+  if (visual.previews ?? (!visual.groups && (visual.featured ?? visual.samples).length <= 2)) {
     const previews = add(parent, "div", "", visual.previews ? "evidence-previews demo-previews" : "evidence-previews");
-    for (const index of visual.samples) {
+    for (const index of visual.featured ?? visual.samples) {
       const sample = project.samples[index];
       const trigger = button(previews, "", "report-button", () => showSample(index, visual.samples, trigger));
       previewImage(add(trigger, "span", "", "report-thumb"), sample);
@@ -1115,6 +1213,34 @@ function renderArchitecture(parent, visual) {
   }
 }
 
+function renderProcessNotes(parent, items) {
+  const notes = add(parent, "dl", "", "process-notes");
+  for (const [label, text] of items) {
+    const item = add(notes, "div");
+    add(item, "dt", label);
+    add(item, "dd", text);
+  }
+}
+
+function renderKpis(parent, visual) {
+  const layout = add(parent, "div", "", "kpi-layout");
+  const table = add(layout, "table", "", "kpi-table");
+  table.setAttribute("aria-label", "SQL results for the synthetic November snapshot");
+  const heading = add(add(table, "thead"), "tr");
+  add(heading, "th", "KPI").scope = "col";
+  add(heading, "th", "SQL Result").scope = "col";
+  const content = add(table, "tbody");
+  for (const [label, value] of visual.rows) {
+    const row = add(content, "tr");
+    add(row, "th", label).scope = "row";
+    add(row, "td", value);
+  }
+  const check = add(layout, "div", "", "kpi-check");
+  add(check, "strong", visual.value);
+  add(check, "p", visual.result);
+  add(check, "small", visual.scope);
+}
+
 function renderVisual(parent, visual) {
   const region = add(parent, "div");
   if (visual.label) add(region, "h4", visual.label, "section-title");
@@ -1128,6 +1254,12 @@ function renderVisual(parent, visual) {
       break;
     case "manualChecks":
       renderManualChecks(region, visual);
+      break;
+    case "processNotes":
+      renderProcessNotes(region, visual.items);
+      break;
+    case "kpis":
+      renderKpis(region, visual);
       break;
     case "quality":
       renderQuality(region, visual);
@@ -1199,6 +1331,10 @@ function renderStage() {
         line.textContent = "Source file unavailable in this portfolio. See the screenshots above.";
       }
     }
+  }
+  if (stage.relatedProject !== undefined) {
+    const related = portfolio.projects[stage.relatedProject];
+    button(add(slide, "div", "", "related-project"), "Explore Project 01 — " + related.title, "control", () => openProject(stage.relatedProject));
   }
   document.getElementById("position").textContent = step + " / " + String(project.stages.length).padStart(2, "0");
   document.getElementById("step-name").textContent = stageLabel;
@@ -1301,6 +1437,17 @@ dialog.addEventListener("cancel", event => {
 });
 dialog.addEventListener("close", clearBody);
 
+function openProject(index) {
+  project = portfolio.projects[index];
+  stageIndex = 0;
+  const number = String(index + 1).padStart(2, "0");
+  dialog.dataset.theme = String(index + 1);
+  document.getElementById("detail-title").textContent = number + " / " + project.title;
+  renderStage();
+  if (dialog.open) dialog.querySelector(".case-top button").focus();
+  else dialog.showModal();
+}
+
 const header = document.getElementById("header");
 add(header, "div", portfolio.eyebrow, "eyebrow");
 add(header, "strong", portfolio.name, "identity");
@@ -1318,17 +1465,11 @@ for (const [index, item] of portfolio.projects.entries()) {
   const tags = add(copy, "ul", "", "tags");
   tags.setAttribute("aria-label", "Technologies");
   for (const tool of item.tools) add(tags, "li", tool);
-  const explore = button(copy, "Explore project", "explore", () => {
-    project = item;
-    stageIndex = 0;
-    dialog.dataset.theme = card.dataset.theme;
-    document.getElementById("detail-title").textContent = number + " / " + item.title;
-    renderStage();
-    dialog.showModal();
-  });
+  const explore = button(copy, "Explore project", "explore", () => openProject(index));
   explore.setAttribute("aria-label", "Explore project " + number + " · " + item.title);
   const preview = add(card, "figure", "", "preview");
-  previewImage(add(preview, "div", "", "preview-frame"), item.samples[item.preview]);
+  const sample = item.samples[item.preview];
+  previewImage(add(preview, "div", "", "preview-frame"), item.thumbnail ? {...sample, path: item.thumbnail} : sample);
   add(preview, "figcaption", item.previewLabel);
 }
 document.getElementById("capabilities").textContent = portfolio.capabilities.join(" · ");
