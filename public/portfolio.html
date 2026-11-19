@@ -250,7 +250,6 @@ dialog {
   padding: clamp(13px, 1.7vw, 24px);
 }
 .stage-panel h4, .track h4, .match-card h4 { font-size: clamp(1rem, 1.6vw, 1.18rem); margin-bottom: 12px; }
-.stage-panel h4 span { color: var(--accent); margin-right: .35em; }
 .stage-panel .flow li { text-align: center; background: var(--tint); border-top: 1px solid var(--line); }
 .repeat-loop { color: var(--accent); text-align: center; margin-top: 12px; font-size: .9rem; font-weight: 650; }
 .merge-diagram { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 10px; align-items: center; }
@@ -268,17 +267,6 @@ dialog {
 .architecture > li > strong { font-size: clamp(.93rem, 1.32vw, 1.1rem); }
 .architecture li span { margin-top: 3px; font-size: clamp(.8rem, 1.06vw, .94rem); }
 .architecture li span:first-of-type { margin-top: 9px; }
-.source-stack { display: grid; gap: 7px; margin-top: 9px; position: relative; margin-right: 12px; }
-.source-stack .merge-node { background: var(--tint); position: relative; padding: 4px 7px; }
-.source-stack .merge-node::after { content: ''; position: absolute; top: 50%; left: calc(100% + 1px); width: 11px; border-top: 1px solid var(--accent); }
-.source-stack::after { content: ''; position: absolute; right: -12px; top: 21%; bottom: 21%; border-right: 1px solid var(--accent); }
-.source-exit { display: none; }
-@media (min-width: 721px) {
-  .architecture > li:first-child::after { display: none; }
-  .source-exit { display: block; position: absolute; top: 50%; left: calc(100% + 12px); right: calc(-35px - clamp(10px, 1.3vw, 17px)); border-top: 1px solid var(--accent); }
-  .source-exit::after { content: ''; position: absolute; top: -4px; right: 0; border-top: 3.5px solid transparent; border-bottom: 3.5px solid transparent; border-left: 6px solid var(--accent); }
-}
-
 .branch { height: 31px; }
 .audiences { gap: 14px; }
 .audience { padding: 12px 13px; }
@@ -321,8 +309,6 @@ dialog {
   .panel-grid { grid-template-columns: 1fr; gap: 8px; }
   .architecture { gap: 14px; }
   .architecture > li:not(:last-child)::after { left: 14px; }
-  .source-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-right: 0; }
-  .source-stack::after, .source-stack .merge-node::after { display: none; }
   .quality-table { font-size: .8rem; }
   .quality-table th, .quality-table td { padding: 6px; overflow-wrap: anywhere; }
 }
@@ -416,37 +402,31 @@ const portfolio = {
       "previewLabel": "Available during the interview",
       "stages": [
         {
-          "title": "Fragmented Systems. Too Many Manual Steps.",
+          "title": "Billing Checks Took Too Many Manual Steps",
           "visuals": [
             {
-              "kind": "challengePanels",
+              "kind": "manualChecks",
               "manual": [
-                "Find the report",
-                "Set filters",
-                "Check billing status"
+                "Open multiple reports",
+                "Bring the data into Excel",
+                "Check with PivotTables and VBA"
               ],
-              "repeat": "Repeat for each check",
-              "sources": [
-                "Cognos",
-                "Databricks"
-              ],
-              "join": "Manually consolidate"
+              "repeat": "Repeat the clicks and checks each time."
             }
           ],
           "takeaway": "Analysts lacked one view of billing progress and exceptions."
         },
         {
           "title": "From Fragmented Sources to Actionable Reporting",
-          "lead": "Two sources feed one preparation workflow and a shared reporting model.",
+          "lead": "Multiple operational reports feed a shared preparation and reporting workflow.",
           "visuals": [
             {
               "kind": "architecture",
               "nodes": [
                 {
-                  "title": "Data sources",
-                  "sources": [
-                    "Cognos",
-                    "Databricks"
+                  "title": "Operational reports",
+                  "lines": [
+                    "Inputs from multiple reports"
                   ]
                 },
                 {
@@ -542,9 +522,9 @@ const portfolio = {
                 {
                   "title": "Before",
                   "items": [
-                    "Separate systems",
-                    "Repeated navigation",
-                    "Manual operational checks"
+                    "Multiple reports",
+                    "Repeated clicks and navigation",
+                    "Manual checks in Excel"
                   ]
                 },
                 {
@@ -1118,18 +1098,12 @@ function mergeDiagram(parent, sources, result) {
   add(diagram, "div", result, "merge-result");
 }
 
-function renderChallengePanels(parent, visual) {
-  const grid = add(parent, "div", "", "panel-grid");
-  const manual = add(grid, "section", "", "stage-panel");
-  const title = add(manual, "h4");
-  add(title, "span", "↻").setAttribute("aria-hidden", "true");
-  title.append("Too Many Manual Steps");
+function renderManualChecks(parent, visual) {
+  const manual = add(parent, "section", "", "stage-panel");
   flow(manual, visual.manual);
-  add(manual, "p", visual.repeat, "repeat-loop");
-
-  const systems = add(grid, "section", "", "stage-panel");
-  add(systems, "h4", "Fragmented Systems");
-  mergeDiagram(systems, visual.sources, visual.join);
+  const repeat = add(manual, "p", "", "repeat-loop");
+  add(repeat, "span", "↻ ").setAttribute("aria-hidden", "true");
+  repeat.append(visual.repeat);
 }
 
 function renderMatching(parent, visual) {
@@ -1197,11 +1171,6 @@ function renderArchitecture(parent, visual) {
   for (const node of visual.nodes) {
     const layer = add(route, "li");
     add(layer, "strong", node.title);
-    if (node.sources) {
-      const sources = add(layer, "div", "", "source-stack");
-      for (const source of node.sources) add(sources, "div", source, "merge-node");
-      add(sources, "div", "", "source-exit").setAttribute("aria-hidden", "true");
-    }
     for (const detail of node.lines ?? []) add(layer, "span", detail);
   }
   add(parent, "div", "", "branch").setAttribute("aria-hidden", "true");
@@ -1227,8 +1196,8 @@ function renderVisual(parent, visual) {
     case "flow":
       flow(region, visual.nodes);
       break;
-    case "challengePanels":
-      renderChallengePanels(region, visual);
+    case "manualChecks":
+      renderManualChecks(region, visual);
       break;
     case "matching":
       renderMatching(region, visual);
