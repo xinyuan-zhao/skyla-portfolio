@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skyla Zhao | Data Analytics &amp; Reporting Portfolio</title>
+<style>
+:root{color-scheme:light;--paper:#f3f3f0;--ink:#252628;--muted:#505356;--accent:#34373a;--line:#d5d7d5;--surface:#fcfcfa;font-family:Inter,"Segoe UI",system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.4}
+*{box-sizing:border-box}body{margin:0}main{max-width:1200px;margin:auto;padding:24px 24px 32px}h1,h2,h3,p,dl,dd,ol{margin:0}a,button{color:var(--accent)}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.eyebrow{font-size:13px;font-weight:650;color:var(--accent)}header{position:relative;padding-bottom:16px;border-bottom:2px solid var(--accent)}.identity{position:absolute;right:0;top:0;max-width:330px;text-align:right;font-size:14px;color:var(--muted)}.identity strong{display:block;color:var(--ink);font-size:18px}h1{font-size:clamp(26px,3.2vw,39px);line-height:1.08;margin:8px 0;font-weight:700}header p{font-size:16px}header .subtitle{font-size:14px;color:var(--muted);margin-bottom:8px}
+h2{font-size:20px;margin-bottom:8px}.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{border:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column}.card h3{font-size:21px;line-height:1.2;margin:4px 0 8px}.card dl{font-size:15px;display:grid;grid-template-columns:80px minmax(0,1fr);column-gap:8px;row-gap:2px}.card dt{font-weight:650}.card dd{color:var(--muted)}.actions{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:auto;padding-top:8px;align-items:center}.open{border:1px solid var(--accent);padding:3px 8px;background:transparent;font-size:13px;font-weight:650}
+header{margin-bottom:24px}.projects{gap:16px}.card{padding:16px}.card dl{row-gap:4px}.tags,.capabilities{list-style:none;padding:0;margin:12px 0 0;display:flex;gap:4px 8px;flex-wrap:wrap}.tags li,.capabilities li{border:1px solid var(--line);padding:2px 8px;font-size:13px}.actions{padding-top:12px}.open{min-height:32px}.open:hover{background:var(--accent);color:var(--paper)}
+.transfer{margin-top:20px}.transfer h2{font-size:16px;margin:0}.transfer p,footer{font-size:13px;color:var(--muted);margin-top:8px}footer{border-top:1px solid var(--line);padding-top:8px}
+dialog{width:min(1056px,calc(100% - 32px));max-height:calc(100dvh - 24px);padding:16px 24px;border:1px solid var(--accent);background:var(--paper);color:var(--ink)}dialog::backdrop{background:#1a1a1ab0}dialog form{float:right;margin-left:12px}dialog h2{font-size:24px}dialog p{color:var(--muted)}figure{margin:12px 0}.sample-stage{height:clamp(160px,54vh,520px);display:grid;place-items:center;overflow:hidden;border:1px solid var(--line)}.sample-stage img,.sample-stage video{width:100%;height:100%;object-fit:contain}.sample-stage [hidden]{display:none}.placeholder{padding:16px;text-align:center}.placeholder strong{display:block;color:var(--ink)}figcaption{margin-top:8px;color:var(--muted);font-size:14px}figcaption strong{display:block;color:var(--ink);font-size:16px}.pager{display:flex;align-items:center;justify-content:space-between;gap:8px}.pager button[aria-disabled=true]{color:var(--muted);border-color:var(--line);background:transparent;cursor:default}
+@media(max-width:940px){.identity{position:static;text-align:left;margin-top:8px;max-width:none}.identity strong{display:inline;margin-right:8px}}
+@media(max-width:700px){main{padding:16px}.projects{grid-template-columns:1fr}dialog{padding:12px}}
+@page{size:A4 portrait;margin:12mm}
+@media print{
+:root{background:white}main{width:100%;max-width:none;padding:0}.identity{position:static;text-align:left;margin-top:4px;max-width:none}.identity strong{display:inline;margin-right:6px}
+header{padding-bottom:8px;margin-bottom:12px}h1{font-size:23pt;margin:4px 0}header p,header .subtitle,.identity,.identity strong{font-size:10pt}header .subtitle{margin-bottom:4px}.eyebrow{font-size:8pt}
+.projects{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.card{padding:8px;break-inside:avoid}.card h3{font-size:13pt;margin:4px 0 8px}.card dl{font-size:9.5pt;grid-template-columns:65px 1fr;gap:3px 4px}.tags li,.capabilities li{font-size:8.5pt}.transfer{margin-top:12px;break-inside:avoid}.transfer p,footer{font-size:9pt}.actions,dialog{display:none!important}
+}
+
+.card{background:var(--surface);border-radius:12px;transition:border-color 160ms ease,box-shadow 160ms ease}
+.card:focus-within,.card:hover{border-color:var(--accent);box-shadow:0 3px 12px #25262812}
+.open{border-radius:5px;transition:background-color 160ms ease,color 160ms ease}
+dialog{border-radius:14px;background:var(--paper)}
+dialog[open]{animation:present 180ms ease-out}
+@keyframes present{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.presentation-bar{margin-top:12px;padding:6px 12px;border-radius:5px;background:var(--accent);color:white;font-size:14px;font-weight:650}
+.story{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px}
+.story button{min-width:0;text-align:left;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);transition:background-color 160ms ease,border-color 160ms ease,box-shadow 160ms ease}
+.story button strong,.story button span{display:block}.story button span{font-size:13px;color:var(--muted);margin-top:3px}
+.story button:hover{border-color:var(--accent)}.story button[aria-pressed=true]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.story.has-focus button[aria-pressed=false]{background:transparent;color:var(--muted)}
+.sample-stage{height:clamp(160px,42vh,480px);border-radius:8px;background:var(--surface)}
+.sample-stage>div,.sample-stage>img:not([hidden]),.sample-stage>video:not([hidden]){animation:present 160ms ease-out}
+@media(max-width:550px){.story{grid-template-columns:1fr}.story button{padding:5px 8px}.story button span{display:inline;margin-left:8px}.story button strong{display:inline}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media print{.card{background:white;box-shadow:none!important}}
+
+@media screen{
+:root{--paper:#f5f2fb;--surface:#fff;--ink:#22223c;--muted:#49485e;--accent:#5842b8;--line:#d9d4e9;background:linear-gradient(125deg,#eee9ff 0%,#f7f5ff 50%,#edf8f7 100%) fixed}
+header{border-bottom:1px solid #c3b8e2}h1{color:#30256a}.card{border:1px solid var(--card-line);border-top:4px solid var(--card-accent);background:var(--card-tint);--card-accent:#6545be;--card-tint:#fbf9ff;--card-line:#d9cff4}
+.card:nth-child(2){--card-accent:#087b76;--card-tint:#f5fcfa;--card-line:#b9e3de}
+.card:nth-child(3){--card-accent:#9a4b17;--card-tint:#fff9f2;--card-line:#ecd0b7}
+.card:nth-child(4){--card-accent:#ad386c;--card-tint:#fff7fb;--card-line:#ecc7da}
+.card .eyebrow,.card .open{color:var(--card-accent)}.card .open{border-color:var(--card-accent)}.card .open:hover{background:var(--card-accent);color:white}
+.card .tags li{background:white;border-color:var(--card-line);border-radius:100px}
+dialog{background:#f8f6ff;border-color:#7662ba}.presentation-bar{background:#5842a1}
+.story button[aria-pressed=true]{background:#e7defc}.sample-stage{background:#eeedf8;height:clamp(155px,45vh,540px)}
+.sample-links{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.sample-links button{font-size:12px;border-radius:100px;border:1px solid #d6ccef;background:#fff;padding:4px 9px;transition:background-color 160ms,color 160ms}
+.sample-links button[aria-current=true]{color:white;background:#5842a1;border-color:#5842a1}
+}
+
+@media screen {
+dialog{margin:auto;max-height:calc(100dvh - 16px);padding:12px 20px}
+.story[hidden],.pager [hidden]{display:none}
+.sample-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:8px}
+.sample-group{min-width:0}.sample-group strong{font-size:14px;color:var(--accent)}
+.sample-group p{font-size:12px;margin:2px 0 5px}
+.sample-buttons{display:flex;flex-wrap:wrap;gap:4px}
+.sample-stage{position:relative;display:grid;grid-template:minmax(0,1fr)/minmax(0,1fr);height:clamp(125px,calc(100dvh - 340px),540px)}
+.sample-stage img,.sample-stage video{position:absolute;inset:0;display:block;width:100%;height:100%;min-width:0;min-height:0;object-fit:contain;animation:none!important}
+.sample-stage [hidden]{display:none}
+.pager{position:sticky;bottom:0;background:#f8f6ff;padding:6px 0;z-index:1}
+.pager .play{background:#5842a1;color:white;min-height:38px;padding-inline:18px}
+@media(max-height:620px){
+  .presentation-bar{display:none}.story{margin-top:6px}.story button{padding:4px 8px}
+  .sample-stage{height:clamp(100px,calc(100dvh - 300px),270px)}
+}
+}
+.card dd.outcome{font-weight:700;color:var(--card-accent,var(--accent))}
+</style>
+</head>
+<body>
+<main>
+<header id="header"></header>
+<section aria-labelledby="projects-title"><h2 id="projects-title">Selected Projects</h2><div class="projects" id="projects"></div></section>
+<section class="transfer" aria-labelledby="transfer-title"><h2 id="transfer-title">How this maps to the role</h2><ul class="capabilities" id="capabilities"></ul><p id="transfer-note"></p></section>
+<footer id="footer"></footer>
+</main>
+<dialog id="detail" aria-labelledby="detail-title" aria-describedby="detail-purpose">
+  <form method="dialog"><button class="open" autofocus>Close</button></form>
+  <h2 id="detail-title"></h2><p id="detail-purpose"></p>
+  <div class="presentation-bar">Project Walkthrough</div>
+  <div class="story" id="story" role="group" aria-label="Highlight a project step"></div>
+  <nav class="sample-links" id="sample-links" aria-label="Jump to sample"></nav>
+  <figure><div class="sample-stage" id="sample-stage"></div><figcaption aria-live="polite"><strong id="sample-title"></strong><span id="sample-caption"></span></figcaption></figure>
+  <nav class="pager" aria-label="Sample navigation"><button class="open" id="previous" type="button">Previous</button><button class="open play" id="play" type="button" hidden>Play Video</button><span id="sample-position"></span><button class="open" id="next" type="button">Next</button></nav>
+</dialog>
+<script>
+"use strict";
+// Edit project summaries, captions and local sample paths here. Use approved media only.
+const portfolio = {
+  "name": "Skyla Zhao",
+  "eyebrow": "Data Analytics & Reporting Portfolio",
+  "headline": "From Operational Data to Trusted Decisions",
+  "projectActions": [
+    "Open dashboard →",
+    "Open workbook →",
+    "Open notebook →",
+    "See automation"
+  ],
+  "subtitle": "Data Quality · Business Intelligence · Operational Controls · Intelligent Automation",
+  "statement": "I turn messy operational data into trusted reporting and automated workflows.",
+  "projects": [
+    {
+      "category": "Business Intelligence",
+      "title": "Billing Operations Performance Dashboard",
+      "challenge": "Fragmented reports hid billing progress and exceptions.",
+      "solution": "Built KPI views by cycle, route and account.",
+      "outcome": "Helped reduce manual billing check time by 70%.",
+      "tools": [
+        "Power BI",
+        "DAX",
+        "Power Query",
+        "Data Modeling"
+      ],
+      "purpose": "Help billing teams monitor completion and prioritize follow-up.",
+      "samples": [
+        {
+          "title": "Operational Overview",
+          "kind": "image",
+          "caption": "Monitors billing completion, outstanding accounts and operational progress through centralized KPIs. Synthetic demonstration data."
+        },
+        {
+          "title": "Route Investigation",
+          "kind": "image",
+          "caption": "Enables cycle- and route-level investigation to identify incomplete work and prioritize follow-up. Synthetic demonstration data."
+        },
+        {
+          "title": "Account-Level Exceptions",
+          "kind": "image",
+          "caption": "Supports investigation of outstanding accounts by billing type, cycle and processing status. Synthetic demonstration data."
+        },
+        {
+          "title": "Cycle Performance",
+          "kind": "image",
+          "caption": "Combines completion rates, deadlines, ownership and exception information for operational review. Synthetic demonstration data."
+        },
+        {
+          "title": "Address Search",
+          "kind": "image",
+          "caption": "Filters the account view by address using explicitly synthetic streets and units."
+        }
+      ]
+    },
+    {
+      "category": "Operational Controls",
+      "title": "Billing Reconciliation & Exception Detection",
+      "challenge": "Manual comparisons made discrepancies hard to investigate.",
+      "solution": "Standardized inputs, matched records and flagged exceptions.",
+      "outcome": "Repeatable reconciliation and structured exception review.",
+      "tools": [
+        "Excel",
+        "Power Query",
+        "XLOOKUP",
+        "Pivot Tables"
+      ],
+      "purpose": "Make billing discrepancies easier to identify and investigate.",
+      "samples": [
+        {
+          "title": "Reconciliation Overview",
+          "kind": "image",
+          "caption": "Demonstration workbook showing match controls and exception counts by type."
+        },
+        {
+          "title": "Exception Review",
+          "kind": "image",
+          "caption": "Synthetic account and meter IDs show how exceptions are categorized, prioritized and tracked."
+        }
+      ]
+    },
+    {
+      "category": "Data Quality & ETL",
+      "title": "Data Profiling, Cleaning & Validation",
+      "challenge": "Raw data contained duplicates, gaps and inconsistencies.",
+      "solution": "Profiled and cleaned data with Python and SQL in Jupyter",
+      "outcome": "Repeatable data preparation with documented checks.",
+      "tools": [
+        "Python",
+        "SQL",
+        "Pandas",
+        "Jupyter"
+      ],
+      "purpose": "Prepare operational data for analysis with repeatable checks.",
+      "samples": [
+        {
+          "title": "Table-Level Profiling",
+          "kind": "image",
+          "caption": "Jupyter code checks row counts, duplicates and missing cells. Output values are masked."
+        },
+        {
+          "title": "Column-Level Profiling",
+          "kind": "image",
+          "caption": "Jupyter code profiles data types and missing values by column. Sample values are removed."
+        },
+        {
+          "title": "Monthly Billing Trend",
+          "kind": "image",
+          "caption": "Jupyter chart of posted billing cycles across synthetic monthly snapshots."
+        }
+      ]
+    },
+    {
+      "category": "Intelligent Automation",
+      "title": "Workflow Automation & AI-Assisted Processing",
+      "challenge": "PDF invoices and legacy checks required repeated manual work.",
+      "solution": "Built a PDF-to-Excel tool with AI-assisted coding and a separate legacy automation.",
+      "outcome": "Processed PDF invoices into structured Excel data in under 5 min.",
+      "tools": [
+        "AI-assisted coding",
+        "Power Automate",
+        "VBA",
+        "Excel"
+      ],
+      "purpose": "Two separate tools for invoice conversion and routine work in legacy systems.",
+      "samples": [
+        {
+          "title": "Document Inputs",
+          "kind": "image",
+          "caption": "Load the PDF invoice as the source for structured Excel output."
+        },
+        {
+          "title": "Review Stage",
+          "kind": "image",
+          "caption": "The workflow surfaces matches for review before invoice generation. Identifying fields are covered."
+        },
+        {
+          "title": "Extracted Line Items",
+          "kind": "image",
+          "caption": "The review table groups extracted line items into billing categories. Source details and amounts are covered."
+        },
+        {
+          "title": "Category Totals",
+          "kind": "image",
+          "caption": "The totals view groups amounts by category before invoice generation. Amounts, usage and dates are covered."
+        },
+        {
+          "title": "Invoice Output",
+          "kind": "image",
+          "caption": "Invoice preview from the PDF-to-Excel tool. This sample shows the preview, with amounts and identifiers removed."
+        },
+        {
+          "title": "VBA File Preparation",
+          "kind": "video",
+          "caption": "Short, silent excerpt showing the workbook export controls. Operational values are covered and file dialogs are excluded."
+        },
+        {
+          "title": "Power Automate Demo",
+          "kind": "video",
+          "caption": "Legacy form and controls shown at 1.35× speed. Record values are masked."
+        }
+      ],
+      "groups": [
+        {
+          "title": "A · PDF Invoice to Excel",
+          "description": "Built with AI-assisted coding. Convert PDF invoice line items into structured Excel data for review.",
+          "start": 0,
+          "end": 5
+        },
+        {
+          "title": "B · Legacy System Automation",
+          "description": "Automate repetitive checks and deletion steps in older systems to reduce manual work.",
+          "start": 5,
+          "end": 7
+        }
+      ]
+    }
+  ],
+  "capabilities": [
+    "Data Quality & Validation",
+    "Operational KPI Reporting",
+    "Exception Investigation",
+    "Workflow Automation"
+  ],
+  "transferNote": "These projects demonstrate transferable capabilities relevant to data-driven Security Operations, including reliable reporting, operational visibility, and repeatable analytical controls.",
+  "footer": "Project summaries for interview discussion."
+};
+
+function add(parent, tag, text, className) {
+  const element = document.createElement(tag);
+  if (text) element.textContent = text;
+  if (className) element.className = className;
+  parent.append(element);
+  return element;
+}
+const header = document.getElementById("header");
+add(header, "div", portfolio.eyebrow, "eyebrow");
+const identity = add(header, "div", "", "identity");
+add(identity, "strong", portfolio.name);
+add(header, "h1", portfolio.headline);
+add(header, "p", portfolio.subtitle, "subtitle");
+add(header, "p", portfolio.statement);
+
+const dialog = document.getElementById("detail");
+const stage = document.getElementById("sample-stage");
+const story = document.getElementById("story");
+const sampleLinks = document.getElementById("sample-links");
+const previous = document.getElementById("previous");
+const next = document.getElementById("next");
+const play = document.getElementById("play");
+let currentProject;
+let sampleIndex = 0;
+
+function projectSteps(project) {
+  return [["Challenge", project.challenge], ["Solution", project.solution], ["Outcome", project.outcome]];
+}
+
+function renderStory(project) {
+  story.replaceChildren();
+  story.classList.remove("has-focus");
+  for (const [index, [label, description]] of projectSteps(project).entries()) {
+    const step = add(story, "button");
+    step.type = "button";
+    step.setAttribute("aria-pressed", "false");
+    add(step, "strong", label);
+    add(step, "span", description);
+    step.addEventListener("click", () => {
+      const selected = step.getAttribute("aria-pressed") === "false";
+      for (const button of story.children) {
+        button.setAttribute("aria-pressed", String(selected && button === step));
+      }
+      story.classList.toggle("has-focus", selected);
+      const linkedSample = project.stepSamples?.[index];
+      if (selected && linkedSample !== undefined) showSample(linkedSample);
+    });
+  }
+}
+
+play.addEventListener("click", () => {
+  const video = stage.querySelector("video");
+  if (!video) return;
+  if (video.paused) video.play().catch(() => {});
+  else video.pause();
+});
+
+function renderSampleLinks(project) {
+  sampleLinks.replaceChildren();
+  const groups = project.groups || [{start: 0, end: project.samples.length}];
+  for (const group of groups) {
+    const section = add(sampleLinks, "div", "", "sample-group");
+    if (group.title) {
+      add(section, "strong", group.title);
+      add(section, "p", group.description);
+    }
+    const buttons = add(section, "div", "", "sample-buttons");
+    for (let index = group.start; index < group.end; index++) {
+      const button = add(buttons, "button", project.samples[index].title);
+      button.type = "button";
+      button.addEventListener("click", () => showSample(index));
+    }
+  }
+}
+
+function showSample(index) {
+  sampleIndex = index;
+  renderSample();
+}
+
+function clearSample() {
+  stage.querySelector("video")?.pause();
+  stage.replaceChildren();
+}
+
+function renderSample() {
+  const sample = currentProject.samples[sampleIndex];
+  const count = currentProject.samples.length;
+  Array.from(sampleLinks.querySelectorAll("button")).forEach((button, index) => {
+    if (index === sampleIndex) button.setAttribute("aria-current", "true");
+    else button.removeAttribute("aria-current");
+  });
+  document.getElementById("sample-title").textContent = sample.title;
+  document.getElementById("sample-caption").textContent = sample.caption;
+  document.getElementById("sample-position").textContent = (sampleIndex + 1) + " / " + count;
+  previous.setAttribute("aria-disabled", String(sampleIndex === 0));
+  next.setAttribute("aria-disabled", String(sampleIndex === count - 1));
+
+  clearSample();
+  play.hidden = true;
+  play.textContent = "Play Video";
+  const placeholder = add(stage, "div", "", "placeholder");
+  if (!sample.path) {
+    add(placeholder, "strong", "Discuss during the interview");
+    return;
+  }
+  const message = add(placeholder, "strong", "Loading local sample…");
+  const isVideo = sample.kind === "video";
+  const media = add(stage, isVideo ? "video" : "img");
+  media.hidden = true;
+  if (isVideo) {
+    media.controls = true;
+    media.preload = "metadata";
+    media.setAttribute("aria-label", sample.title);
+    media.addEventListener("play", () => { play.textContent = "Pause Video"; });
+    media.addEventListener("pause", () => { play.textContent = "Play Video"; });
+    media.addEventListener("ended", () => { play.textContent = "Replay Video"; });
+  } else {
+    media.alt = sample.title;
+  }
+
+  media.addEventListener(isVideo ? "loadedmetadata" : "load", () => {
+    placeholder.hidden = true;
+    media.hidden = false;
+    if (isVideo) play.hidden = false;
+  }, { once: true });
+  media.addEventListener("error", () => {
+    media.hidden = true;
+    play.hidden = true;
+    placeholder.hidden = false;
+    message.textContent = isVideo ? "Demonstration video unavailable" : "Sample image unavailable";
+    add(placeholder, "div", "Approved local media can be added here.");
+  }, { once: true });
+  media.src = sample.path;
+}
+
+function moveSample(delta) {
+  const target = sampleIndex + delta;
+  if (target < 0 || target >= currentProject.samples.length) return;
+  showSample(target);
+}
+
+previous.addEventListener("click", () => moveSample(-1));
+next.addEventListener("click", () => moveSample(1));
+dialog.addEventListener("keydown", event => {
+  if (event.target instanceof HTMLVideoElement || event.altKey || event.ctrlKey || event.metaKey) return;
+  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+    event.preventDefault();
+    moveSample(event.key === "ArrowLeft" ? -1 : 1);
+  }
+});
+dialog.addEventListener("close", clearSample);
+
+const grid = document.getElementById("projects");
+portfolio.projects.forEach((project, index) => {
+  const number = String(index + 1).padStart(2, "0");
+  const card = add(grid, "article", "", "card");
+  add(card, "div", number + " / " + project.category, "eyebrow");
+  add(card, "h3", project.title);
+  const list = add(card, "dl");
+  for (const [label, value] of projectSteps(project)) {
+    add(list, "dt", label);
+    add(list, "dd", value, label === "Outcome" ? "outcome" : undefined);
+  }
+  const tags = add(card, "ul", "", "tags");
+  tags.setAttribute("aria-label", "Technologies");
+  for (const tool of project.tools) add(tags, "li", tool);
+  const action = portfolio.projectActions[index];
+  const button = add(add(card, "div", "", "actions"), "button", action, "open");
+  button.type = "button";
+  button.setAttribute("aria-label", action + " · " + project.title);
+  button.addEventListener("click", () => {
+    currentProject = project;
+    sampleIndex = 0;
+    document.getElementById("detail-title").textContent = project.title;
+    document.getElementById("detail-purpose").textContent = project.purpose;
+    story.hidden = Boolean(project.groups);
+    renderStory(project);
+    renderSampleLinks(project);
+    renderSample();
+    dialog.showModal();
+  });
+});
+
+const capabilities = document.getElementById("capabilities");
+for (const capability of portfolio.capabilities) add(capabilities, "li", capability);
+document.getElementById("transfer-note").textContent = portfolio.transferNote;
+document.getElementById("footer").textContent = portfolio.footer;
+</script>
+</body>
+</html>
