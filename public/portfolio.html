@@ -147,8 +147,6 @@ dialog::backdrop { background: #24243399; }
 .architecture li:nth-child(3) { border-top-color: #66539b; }
 .architecture li:nth-child(4) { border-top-color: #3b5f87; }
 .architecture li span { display: block; margin-top: 4px; font-size: .78rem; font-weight: 450; color: var(--muted); }
-.sources { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
-.sources strong { border-radius: 4px; background: var(--tint); padding: 2px 6px; font-size: .78rem; }
 .branch { height: 17px; width: 100%; margin: 0; position: relative; }
 .branch::before { content: ''; position: absolute; right: 12.5%; height: 100%; border-right: 1px solid var(--accent); }
 .branch::after { content: ''; position: absolute; left: 30%; right: 12.5%; bottom: 0; border-bottom: 1px solid var(--accent); }
@@ -234,6 +232,112 @@ dialog::backdrop { background: #24243399; }
   .card { break-inside: avoid; box-shadow: none !important; }
   .explore, dialog { display: none !important; }
 }
+/* Give the diagrams room while keeping the stage controls in view. */
+dialog {
+  width: min(1450px, calc(100% - 48px));
+  height: min(980px, calc(100dvh - 48px));
+}
+.case-body { display: flex; flex-direction: column; padding: clamp(16px, 2.6vw, 38px); }
+.slide, .sample-view { flex: none; margin-block: auto; min-width: 0; }
+.slide h3 { font-size: clamp(1.7rem, 3vw, 2.75rem); }
+.visuals { gap: 18px; margin-top: clamp(15px, 2.2vw, 28px); }
+.panel-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.stage-panel, .track, .match-card {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  padding: clamp(13px, 1.7vw, 24px);
+}
+.stage-panel h4, .track h4, .match-card h4 { font-size: clamp(1rem, 1.6vw, 1.18rem); margin-bottom: 12px; }
+.stage-panel h4 span { color: var(--accent); margin-right: .35em; }
+.stage-panel .flow li { text-align: center; background: var(--tint); border-top: 1px solid var(--line); }
+.repeat-loop { color: var(--accent); text-align: center; margin-top: 12px; font-size: .9rem; font-weight: 650; }
+.merge-diagram { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 10px; align-items: center; }
+.merge-node, .merge-result { border: 1px solid var(--line); border-radius: 6px; padding: 7px; background: var(--surface); font-weight: 650; text-align: center; }
+.merge-diagram .merge-node { position: relative; }
+.merge-diagram .merge-node::after { position: absolute; content: ''; top: 100%; left: 50%; height: 9px; border-left: 1px solid var(--accent); }
+.merge-connector { grid-column: 1 / -1; height: 17px; position: relative; }
+.merge-connector::before { position: absolute; content: ''; left: 24%; right: 24%; top: 9px; border-top: 1px solid var(--accent); }
+.merge-connector::after { position: absolute; content: '↓'; left: 50%; top: 5px; transform: translateX(-50%); color: var(--accent); line-height: 1; font-weight: 750; background: var(--surface); }
+.merge-result { grid-column: 1 / -1; justify-self: center; background: var(--tint); padding-inline: 16px; }
+.takeaway { margin-top: 20px; padding: 13px 16px; }
+.architecture { gap: 28px; }
+.architecture > li { padding: clamp(10px, 1.3vw, 17px); }
+.architecture > li:not(:last-child)::after { left: calc(100% + 6px); font-size: 1.1rem; }
+.architecture > li > strong { font-size: clamp(.93rem, 1.32vw, 1.1rem); }
+.architecture li span { margin-top: 3px; font-size: clamp(.8rem, 1.06vw, .94rem); }
+.architecture li span:first-of-type { margin-top: 9px; }
+.source-stack { display: grid; gap: 7px; margin-top: 9px; position: relative; margin-right: 12px; }
+.source-stack .merge-node { background: var(--tint); position: relative; padding: 4px 7px; }
+.source-stack .merge-node::after { content: ''; position: absolute; top: 50%; left: calc(100% + 1px); width: 11px; border-top: 1px solid var(--accent); }
+.source-stack::after { content: ''; position: absolute; right: -12px; top: 21%; bottom: 21%; border-right: 1px solid var(--accent); }
+.source-exit { display: none; }
+@media (min-width: 721px) {
+  .architecture > li:first-child::after { display: none; }
+  .source-exit { display: block; position: absolute; top: 50%; left: calc(100% + 12px); right: calc(-35px - clamp(10px, 1.3vw, 17px)); border-top: 1px solid var(--accent); }
+  .source-exit::after { content: ''; position: absolute; top: -4px; right: 0; border-top: 3.5px solid transparent; border-bottom: 3.5px solid transparent; border-left: 6px solid var(--accent); }
+}
+
+.branch { height: 31px; }
+.audiences { gap: 14px; }
+.audience { padding: 12px 13px; }
+.audience h4 { font-size: 1.03rem; }
+.audience p { font-size: .85rem; }
+.report-list { gap: 8px; margin-top: 8px; }
+.report-button .report-thumb { aspect-ratio: 16 / 8; max-height: 138px; }
+.report-button strong { font-size: .83rem; }
+.impact .metric { margin-top: 14px; gap: 6px 15px; }
+.impact .metric strong { font-size: clamp(2.45rem, 5.6vw, 5.4rem); }
+.impact .metric span { font-size: clamp(1rem, 1.8vw, 1.35rem); }
+.impact .compare { grid-auto-rows: 1fr; gap: 14px; }
+.impact .compare article { background: #f0efee; padding: clamp(14px, 2vw, 25px); }
+.impact .compare article:last-child { background: var(--tint); border-color: color-mix(in srgb, var(--accent) 32%, var(--line)); }
+.impact .compare h4 { font-size: .91rem; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 9px; }
+.impact .compare ul { font-size: clamp(.93rem, 1.35vw, 1.13rem); }
+.impact .compare li + li { margin-top: 6px; }
+.future { border-top: 1px solid var(--line); padding-top: 11px; margin-top: 18px; color: var(--muted); }
+.future .section-title { font-size: .83rem; }
+.future ul { font-size: .83rem; }
+.match-board { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.2fr); gap: 10px; align-items: stretch; }
+.match-board .merge-diagram { grid-column: 1 / -1; align-self: start; justify-self: center; width: min(100%, 440px); }
+.match-card h4 { margin-bottom: 6px; color: var(--accent); }
+.match-card p { margin-top: 3px; font-size: .91rem; }
+.match-arrow { align-self: center; color: var(--accent); font-size: 1.25rem; font-weight: 700; }
+.quality-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 9px; overflow: hidden; font-size: .92rem; }
+.quality-table th, .quality-table td { text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); padding: 9px 12px; width: 33.33%; }
+.quality-table th { background: var(--tint); color: var(--accent); }
+.quality-table tbody tr:last-child td { border-bottom: 0; }
+.quality-tools { color: var(--muted); margin-top: 7px; font-size: .86rem; font-weight: 650; }
+.track h4 { color: var(--accent); margin-bottom: 9px; }
+.track-step { margin-top: 6px; padding: 7px 9px; border-radius: 5px; background: #f0efee; }
+.track-step strong { display: block; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
+.track-step span { font-size: .93rem; }
+.track-step + .track-step { background: var(--tint); }
+.sample-frame { height: clamp(120px, calc(100dvh - 310px), 660px); }
+
+@media (max-width: 720px) {
+  dialog { width: calc(100% - 16px); height: calc(100dvh - 16px); }
+  .panel-grid { grid-template-columns: 1fr; gap: 8px; }
+  .architecture { gap: 14px; }
+  .architecture > li:not(:last-child)::after { left: 14px; }
+  .source-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-right: 0; }
+  .source-stack::after, .source-stack .merge-node::after { display: none; }
+  .quality-table { font-size: .8rem; }
+  .quality-table th, .quality-table td { padding: 6px; overflow-wrap: anywhere; }
+}
+@media (max-height: 625px) and (min-width: 721px) {
+  dialog { height: calc(100dvh - 16px); }
+  .case-body { padding-block: 10px; }
+  .slide h3 { font-size: 1.75rem; }
+  .visuals { margin-top: 10px; gap: 9px; }
+  .architecture > li { padding: 7px 9px; }
+  .architecture li span { margin-top: 1px; font-size: .78rem; }
+  .architecture li span:first-of-type { margin-top: 3px; }
+  .branch { height: 15px; }
+  .audience { padding: 6px 7px; }
+  .report-button .report-thumb { aspect-ratio: 24 / 8; }
+}
 </style>
 </head>
 <body>
@@ -282,17 +386,17 @@ const portfolio = {
       ],
       "samples": [
         {
-          "title": "Operational Overview",
+          "title": "Billing Overview",
           "kind": "image",
           "caption": "Monitor completion rates, outstanding accounts and routes requiring attention."
         },
         {
-          "title": "Route Investigation",
+          "title": "Route Details",
           "kind": "image",
           "caption": "Enables cycle- and route-level investigation to identify incomplete work and prioritize follow-up. Synthetic demonstration data."
         },
         {
-          "title": "Account-Level Exceptions",
+          "title": "Unbilled Account Details",
           "kind": "image",
           "caption": "Supports investigation of outstanding accounts by billing type, cycle and processing status. Synthetic demonstration data."
         },
@@ -313,43 +417,27 @@ const portfolio = {
       "stages": [
         {
           "title": "Fragmented Systems. Too Many Manual Steps.",
-          "lead": "Operational reporting depended on navigating multiple systems and manually checking billing progress.",
           "visuals": [
             {
-              "kind": "flow",
-              "label": "A · Manual navigation",
-              "nodes": [
-                "Open system",
-                "Navigate menus",
-                "Select report",
-                "Apply filters",
-                "Review results"
-              ]
-            },
-            {
-              "kind": "compare",
-              "label": "B · Fragmented sources",
-              "cards": [
-                {
-                  "title": "Cognos",
-                  "items": [
-                    "Open source reports and retrieve billing information."
-                  ]
-                },
-                {
-                  "title": "Databricks",
-                  "items": [
-                    "Access a separate data environment and consolidate findings."
-                  ]
-                }
-              ]
+              "kind": "challengePanels",
+              "manual": [
+                "Find the report",
+                "Set filters",
+                "Check billing status"
+              ],
+              "repeat": "Repeat for each check",
+              "sources": [
+                "Cognos",
+                "Databricks"
+              ],
+              "join": "Manually consolidate"
             }
           ],
-          "takeaway": "Analysts lacked a single, consistent view of operational progress and exceptions."
+          "takeaway": "Analysts lacked one view of billing progress and exceptions."
         },
         {
           "title": "From Fragmented Sources to Actionable Reporting",
-          "lead": "A centralized reporting workflow using Power Query, data modeling, and Power BI.",
+          "lead": "Two sources feed one preparation workflow and a shared reporting model.",
           "visuals": [
             {
               "kind": "architecture",
@@ -364,21 +452,25 @@ const portfolio = {
                 {
                   "title": "Power Query",
                   "lines": [
-                    "Ingest and combine data",
-                    "Prepare inputs for reporting"
+                    "Data ingestion",
+                    "Standardize types and formats",
+                    "Merge and transform tables",
+                    "Apply business rules",
+                    "Validate data"
                   ]
                 },
                 {
                   "title": "Power BI semantic model",
                   "lines": [
-                    "Table relationships and KPI definitions",
-                    "DAX measures and reconciliation checks"
+                    "Table relationships",
+                    "DAX measures",
+                    "Consistent KPI definitions"
                   ]
                 },
                 {
                   "title": "Power BI reporting",
                   "lines": [
-                    "Operational and management views"
+                    "Publish views for two audiences"
                   ]
                 }
               ],
@@ -421,7 +513,7 @@ const portfolio = {
           "technical": [
             [
               "Transformation",
-              "Power Query prepared reporting inputs from the Cognos and Databricks sources. Confirm the exact import paths and refresh cadence before presenting them as implemented."
+              "The diagram shows the logical data flow. The available materials do not establish a direct connection, an intermediate file location, or a refresh schedule."
             ],
             [
               "Model and measures",
@@ -450,25 +542,26 @@ const portfolio = {
                 {
                   "title": "Before",
                   "items": [
-                    "Separate systems and manual navigation",
-                    "Repetitive billing checks",
-                    "Fragmented status and exception information"
+                    "Separate systems",
+                    "Repeated navigation",
+                    "Manual operational checks"
                   ]
                 },
                 {
                   "title": "After",
                   "items": [
-                    "Centralized reporting and consistent KPIs",
-                    "Cycle-, route- and account-level investigation",
-                    "Views for analysts and management"
+                    "Centralized reporting",
+                    "Consistent KPIs",
+                    "Faster operational investigation"
                   ]
                 }
               ]
             }
           ],
           "future": [
-            "Automate more refresh and validation steps",
-            "Explore proactive exception alerts and historical trends"
+            "Automated refresh and validation",
+            "Proactive exception alerts",
+            "Historical trend and risk analysis"
           ]
         }
       ]
@@ -529,16 +622,27 @@ const portfolio = {
           "lead": "Excel and Power Query standardize the comparison before discrepancies are classified for review.",
           "visuals": [
             {
-              "kind": "flow",
-              "label": "Reconciliation workflow",
-              "nodes": [
-                "Source reports",
-                "Excel / Power Query",
-                "Standardize and match",
-                "XLOOKUP / rules",
-                "Classify exceptions",
-                "Pivot summary and review"
-              ]
+              "kind": "matching",
+              "label": "Reconciliation logic",
+              "inputs": [
+                "MRV records",
+                "BJV records"
+              ],
+              "match": {
+                "title": "Standardize & match",
+                "lines": [
+                  "Excel and Power Query",
+                  "XLOOKUP and matching rules"
+                ]
+              },
+              "results": {
+                "title": "Classify & review",
+                "lines": [
+                  "Unmatched or duplicate keys",
+                  "Usage and read mismatches",
+                  "Pivot summary for investigation"
+                ]
+              }
             },
             {
               "kind": "evidence",
@@ -624,7 +728,7 @@ const portfolio = {
         }
       ],
       "summary": "Turned inconsistent operational data into validated, analysis-ready datasets.",
-      "preview": 2,
+      "preview": 0,
       "previewLabel": "Available during the interview",
       "stages": [
         {
@@ -669,16 +773,31 @@ const portfolio = {
           "lead": "Python and SQL in Jupyter made the checks reproducible and helped assess which fields were suitable for modeling.",
           "visuals": [
             {
-              "kind": "flow",
-              "label": "Data-quality pipeline",
-              "nodes": [
-                "Raw data",
-                "Python / Pandas profiling",
-                "Investigate quality issues",
-                "Clean and transform",
-                "SQL validation",
-                "Analysis-ready data"
-              ]
+              "kind": "quality",
+              "label": "Raw data → cleaning → validation",
+              "headers": [
+                "Raw input",
+                "Preparation",
+                "Validation check"
+              ],
+              "rows": [
+                [
+                  "Duplicate rows or keys",
+                  "Identify duplicate records",
+                  "Check candidate-key uniqueness"
+                ],
+                [
+                  "Missing fields",
+                  "Profile missing values",
+                  "Review completeness of required fields"
+                ],
+                [
+                  "Inconsistent types",
+                  "Normalize data types",
+                  "Check types and row counts"
+                ]
+              ],
+              "tools": "Python / Pandas in Jupyter → SQL validation"
             },
             {
               "kind": "evidence",
@@ -825,21 +944,18 @@ const portfolio = {
           "lead": "The PDF-to-Excel tool was built with AI-assisted coding. VBA and Power Automate support a separate legacy workflow.",
           "visuals": [
             {
-              "kind": "flow",
-              "label": "A · PDF invoice to Excel",
-              "nodes": [
-                "Import invoice PDF",
-                "Extract line items",
-                "Review and categorize",
-                "Structure data for Excel"
-              ]
-            },
-            {
-              "kind": "flow",
-              "label": "B · Legacy automation",
-              "nodes": [
-                "Prepare files with VBA",
-                "Run routine legacy checks and cleanup with Power Automate"
+              "kind": "worktracks",
+              "tracks": [
+                {
+                  "title": "PDF invoices",
+                  "before": "Read lines and copy them into Excel",
+                  "after": "Import PDF → extract lines → review and categorize → structure for Excel"
+                },
+                {
+                  "title": "Legacy operations",
+                  "before": "Prepare files and check records manually",
+                  "after": "Prepare files with VBA → run routine checks and cleanup with Power Automate"
+                }
               ]
             },
             {
@@ -989,21 +1105,66 @@ function columnGrid(element, count) {
   return element;
 }
 
-function flow(parent, nodes, architecture = false) {
-  const route = columnGrid(add(parent, "ol", "", architecture ? "flow architecture" : "flow"), nodes.length);
+function flow(parent, nodes) {
+  const route = columnGrid(add(parent, "ol", "", "flow"), nodes.length);
   route.setAttribute("aria-label", "Process in order");
-  for (const node of nodes) {
-    const cell = add(route, "li");
-    if (typeof node === "string") {
-      cell.textContent = node;
-      continue;
+  for (const node of nodes) add(route, "li", node);
+}
+
+function mergeDiagram(parent, sources, result) {
+  const diagram = add(parent, "div", "", "merge-diagram");
+  for (const source of sources) add(diagram, "div", source, "merge-node");
+  add(diagram, "div", "", "merge-connector").setAttribute("aria-hidden", "true");
+  add(diagram, "div", result, "merge-result");
+}
+
+function renderChallengePanels(parent, visual) {
+  const grid = add(parent, "div", "", "panel-grid");
+  const manual = add(grid, "section", "", "stage-panel");
+  const title = add(manual, "h4");
+  add(title, "span", "↻").setAttribute("aria-hidden", "true");
+  title.append("Too Many Manual Steps");
+  flow(manual, visual.manual);
+  add(manual, "p", visual.repeat, "repeat-loop");
+
+  const systems = add(grid, "section", "", "stage-panel");
+  add(systems, "h4", "Fragmented Systems");
+  mergeDiagram(systems, visual.sources, visual.join);
+}
+
+function renderMatching(parent, visual) {
+  const board = add(parent, "div", "", "match-board");
+  mergeDiagram(board, visual.inputs, "Bring sources together");
+  for (const item of [visual.match, visual.results]) {
+    if (item === visual.results) add(board, "div", "→", "match-arrow").setAttribute("aria-hidden", "true");
+    const card = add(board, "section", "", "match-card");
+    add(card, "h4", item.title);
+    for (const detail of item.lines) add(card, "p", detail);
+  }
+}
+
+function renderQuality(parent, visual) {
+  const table = add(parent, "table", "", "quality-table");
+  const headings = add(add(table, "thead"), "tr");
+  for (const title of visual.headers) add(headings, "th", title).scope = "col";
+  const data = add(table, "tbody");
+  for (const values of visual.rows) {
+    const row = add(data, "tr");
+    for (const value of values) add(row, "td", value);
+  }
+  add(parent, "p", visual.tools, "quality-tools");
+}
+
+function renderWorktracks(parent, visual) {
+  const grid = add(parent, "div", "", "panel-grid");
+  for (const track of visual.tracks) {
+    const lane = add(grid, "section", "", "track");
+    add(lane, "h4", track.title);
+    for (const [label, description] of [["Manual", track.before], ["Automated", track.after]]) {
+      const step = add(lane, "p", "", "track-step");
+      add(step, "strong", label);
+      add(step, "span", description);
     }
-    add(cell, "strong", node.title);
-    if (node.sources) {
-      const sources = add(cell, "div", "", "sources");
-      for (const source of node.sources) add(sources, "strong", source);
-    }
-    for (const line of node.lines ?? []) add(cell, "span", line);
   }
 }
 
@@ -1031,7 +1192,18 @@ function renderEvidence(parent, visual) {
 }
 
 function renderArchitecture(parent, visual) {
-  flow(parent, visual.nodes, true);
+  const route = columnGrid(add(parent, "ol", "", "flow architecture"), visual.nodes.length);
+  route.setAttribute("aria-label", "Reporting architecture in order");
+  for (const node of visual.nodes) {
+    const layer = add(route, "li");
+    add(layer, "strong", node.title);
+    if (node.sources) {
+      const sources = add(layer, "div", "", "source-stack");
+      for (const source of node.sources) add(sources, "div", source, "merge-node");
+      add(sources, "div", "", "source-exit").setAttribute("aria-hidden", "true");
+    }
+    for (const detail of node.lines ?? []) add(layer, "span", detail);
+  }
   add(parent, "div", "", "branch").setAttribute("aria-hidden", "true");
   const groups = add(parent, "div", "", "audiences");
   const indices = visual.audiences.flatMap(group => group.reports.map(report => report.sample));
@@ -1054,6 +1226,18 @@ function renderVisual(parent, visual) {
   switch (visual.kind) {
     case "flow":
       flow(region, visual.nodes);
+      break;
+    case "challengePanels":
+      renderChallengePanels(region, visual);
+      break;
+    case "matching":
+      renderMatching(region, visual);
+      break;
+    case "quality":
+      renderQuality(region, visual);
+      break;
+    case "worktracks":
+      renderWorktracks(region, visual);
       break;
     case "architecture":
       renderArchitecture(region, visual);
@@ -1084,7 +1268,7 @@ function renderStage() {
   sampleReturn = null;
   clearBody();
   const stage = project.stages[stageIndex];
-  const slide = add(body, "section", "", "slide");
+  const slide = add(body, "section", "", stageIndex === 2 ? "slide impact" : "slide");
   const step = String(stageIndex + 1).padStart(2, "0");
   add(slide, "p", stages[stageIndex], "eyebrow");
   add(slide, "h3", stage.title);
@@ -1099,7 +1283,7 @@ function renderStage() {
   if (stage.takeaway) add(slide, "p", stage.takeaway, "takeaway");
   if (stage.future) {
     const future = add(slide, "section", "", "future");
-    add(future, "h4", "Next Opportunities", "section-title");
+    add(future, "h4", "Future Opportunities", "section-title");
     list(future, stage.future);
   }
   if (stage.technical) {
@@ -1131,7 +1315,7 @@ function showSample(index, indices, trigger) {
   const sample = project.samples[index];
   const view = add(body, "section", "", "sample-view");
   const bar = add(view, "div", "", "sample-bar");
-  const back = button(bar, "Back to stage", "control", closeSample);
+  const back = button(bar, "Close preview", "control", closeSample);
   add(bar, "h3", sample.title);
   const actions = add(bar, "div", "", "media-actions");
   const navigation = add(view, "nav", "", "sample-list");
