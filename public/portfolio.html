@@ -242,14 +242,14 @@ dialog {
 .slide h3 { font-size: clamp(1.7rem, 3vw, 2.75rem); }
 .visuals { gap: 18px; margin-top: clamp(15px, 2.2vw, 28px); }
 .panel-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.stage-panel, .track {
+.stage-panel, .solution-panel {
   min-width: 0;
   border: 1px solid var(--line);
   border-radius: 9px;
   background: var(--surface);
   padding: clamp(13px, 1.7vw, 24px);
 }
-.stage-panel h4, .track h4 { font-size: clamp(1rem, 1.6vw, 1.18rem); margin-bottom: 12px; }
+.stage-panel h4, .solution-panel h4 { font-size: clamp(1rem, 1.6vw, 1.18rem); margin-bottom: 12px; }
 .stage-panel .flow li { text-align: center; background: var(--tint); border-top: 1px solid var(--line); }
 .repeat-loop { color: var(--accent); text-align: center; margin-top: 12px; font-size: .9rem; font-weight: 650; }
 .takeaway { margin-top: 20px; padding: 13px 16px; }
@@ -284,11 +284,6 @@ dialog {
 .quality-table th { background: var(--tint); color: var(--accent); }
 .quality-table tbody tr:last-child td { border-bottom: 0; }
 .quality-tools { color: var(--muted); margin-top: 7px; font-size: .86rem; font-weight: 650; }
-.track h4 { color: var(--accent); margin-bottom: 9px; }
-.track-step { margin-top: 6px; padding: 7px 9px; border-radius: 5px; background: #f0efee; }
-.track-step strong { display: block; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
-.track-step span { font-size: .93rem; }
-.track-step + .track-step { background: var(--tint); }
 .sample-frame { height: clamp(120px, calc(100dvh - 310px), 660px); }
 
 @media (max-width: 720px) {
@@ -338,6 +333,30 @@ dialog {
 .kpi-check small { color: var(--muted); }
 .related-project { margin-top: 15px; }
 @media (max-width: 620px) { .process-notes, .kpi-layout { grid-template-columns: 1fr; } }
+
+.preview-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: stretch; gap: 8px; width: 100%; padding: 8px; list-style: none; }
+.preview-flow li { display: grid; place-items: center; position: relative; padding: 4px 2px; min-height: 50px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; color: var(--accent); text-align: center; font-size: clamp(.61rem, 1vw, .77rem); line-height: 1.2; font-weight: 700; }
+.preview-flow li:not(:last-child)::after { content: '›'; position: absolute; top: 50%; right: -7px; transform: translateY(-50%); }
+@media (min-height: 650px) { .compact-challenge { padding-bottom: clamp(28px, 7vh, 64px); } }
+.solution-grid { align-items: stretch; }
+.solution-panel { display: flex; flex-direction: column; gap: 8px; }
+.solution-panel h4 { margin: 0; color: var(--ink); }
+.solution-flow { display: grid; grid-template-columns: repeat(var(--columns), minmax(0, 1fr)); gap: 12px; padding: 0; list-style: none; }
+.solution-flow li { position: relative; display: grid; place-items: center; min-height: 38px; padding: 4px; border-radius: 4px; background: var(--tint); color: var(--ink); font-size: .77rem; font-weight: 650; text-align: center; }
+.solution-flow li:not(:last-child)::after { content: '→'; position: absolute; top: 50%; transform: translateY(-50%); left: calc(100% + 2px); color: var(--accent); }
+.solution-preview { position: relative; display: grid; place-items: center; height: clamp(105px, 24vh, 252px); overflow: hidden; border: 1px solid var(--line); border-radius: 6px; background: var(--tint); }
+.solution-preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: var(--surface); }
+.solution-panel .control { align-self: flex-start; margin-top: auto; }
+.sample-without-media { height: clamp(105px, 22vh, 200px); }
+@media (max-height: 760px) and (min-width: 721px) {
+  .case-body:has(.solution-grid) { padding-block: 14px; }
+  .solution-grid .solution-panel { padding: 14px; }
+  .slide:has(.solution-grid) .visuals { margin-top: 16px; }
+}
+@media (max-height: 625px) and (min-width: 721px) {
+  .solution-grid .solution-panel { padding: 10px; gap: 6px; }
+  .solution-preview { height: 20vh; }
+}
 </style>
 </head>
 <body>
@@ -884,11 +903,17 @@ const portfolio = {
           "kind": "image",
           "caption": "Proposed table grain and model roles. A direct DAX comparison would require matching the period, filters, grain and source snapshot."
         }
+      ],
+      "previewFlow": [
+        "Raw Billing Data",
+        "Python Cleaning",
+        "SQL Validation",
+        "Power BI"
       ]
     },
     {
       "category": "Intelligent Automation",
-      "title": "Workflow Automation & AI-Assisted Processing",
+      "title": "Workflow Automation & Document Processing",
       "tools": [
         "VBA",
         "Power Automate",
@@ -936,95 +961,82 @@ const portfolio = {
       "previewLabel": "Available during the interview",
       "stages": [
         {
-          "title": "Routine Work Took Too Many Manual Steps",
-          "lead": "Invoice processing and operational checks presented two separate opportunities to reduce repetitive work.",
+          "title": "Manual Data Transfer and Repetitive Checks",
+          "lead": "Two separate workflows required repeated data entry, file preparation, and manual operational checks.",
           "visuals": [
             {
               "kind": "flow",
-              "label": "Invoice processing · manual workflow",
+              "label": "Invoice Processing — Manual Workflow",
               "nodes": [
-                "Open PDF invoice",
-                "Read line items",
+                "Open PDF Invoice",
+                "Read Line Items",
                 "Copy into Excel",
-                "Check and organize values"
+                "Check and Organize Values"
               ]
             },
             {
               "kind": "flow",
-              "label": "Legacy operations · manual workflow",
+              "label": "Legacy Operations — Manual Workflow",
               "nodes": [
-                "Prepare the workbook",
-                "Find records in the legacy system",
-                "Run routine checks or cleanup"
+                "Prepare Workbook",
+                "Find Records in Legacy System",
+                "Run Routine Checks or Cleanup"
               ]
             }
           ],
-          "takeaway": "Analysts spent time moving information between tools and repeating routine checks."
+          "takeaway": "Analysts spent time moving information between tools and repeating routine checks.",
+          "compact": true
         },
         {
-          "title": "Two Tools for Two Different Workflows",
-          "lead": "The PDF-to-Excel tool was built with AI-assisted coding. VBA and Power Automate support a separate legacy workflow.",
+          "title": "Two Focused Automation Solutions",
+          "lead": "Developed separate tools to streamline invoice processing and recurring legacy-system operations.",
           "visuals": [
             {
-              "kind": "worktracks",
-              "tracks": [
+              "kind": "solutions",
+              "panels": [
                 {
-                  "title": "PDF invoices",
-                  "before": "Read lines and copy them into Excel",
-                  "after": "Import PDF → extract lines → review and categorize → structure for Excel"
-                },
-                {
-                  "title": "Legacy operations",
-                  "before": "Prepare files and check records manually",
-                  "after": "Prepare files with VBA → run routine checks and cleanup with Power Automate"
-                }
-              ]
-            },
-            {
-              "kind": "evidence",
-              "label": "Workflow walkthroughs",
-              "samples": [
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                6
-              ],
-              "groups": [
-                {
-                  "title": "PDF-to-Excel tool",
+                  "title": "PDF-to-Excel Processing",
+                  "nodes": [
+                    "Import PDF",
+                    "Extract Line Items",
+                    "Review & Categorize",
+                    "Export to Excel"
+                  ],
+                  "primary": 0,
                   "samples": [
                     0,
                     1,
                     2,
                     3,
                     4
-                  ]
+                  ],
+                  "action": "View PDF-to-Excel Demo"
                 },
                 {
-                  "title": "Legacy automation",
+                  "title": "Legacy Workflow Automation",
+                  "nodes": [
+                    "VBA File Preparation",
+                    "Automated Routine Checks",
+                    "Cleanup"
+                  ],
+                  "primary": 6,
                   "samples": [
                     5,
                     6
-                  ]
+                  ],
+                  "action": "View Automation Walkthrough"
                 }
               ]
             }
           ],
           "technical": [
             [
-              "Development approach",
-              "AI-assisted coding supported development of the invoice tool. The review samples show a human checking extracted and categorized information."
+              "PDF-to-Excel Processing",
+              "Ingest PDFs, extract and structure line items, then review and categorize them before export to Excel-compatible output. AI-assisted coding supported development."
             ],
             [
-              "Invoice evidence",
-              "The screenshots show document input, matched lines, category totals and an invoice preview. The preview is a separate screen from the structured Excel output."
-            ],
-            [
-              "Legacy evidence",
-              "The redacted videos show workbook preparation controls and part of the legacy-system workflow."
+              "Legacy Workflow Automation",
+              "Use VBA to prepare workbook files and Power Automate to run recurring checks and cleanup, reducing repetitive manual interactions."
             ]
           ]
         },
@@ -1032,32 +1044,30 @@ const portfolio = {
           "title": "Less Time Moving Data Between Tools",
           "metric": {
             "value": "Under 5 minutes",
-            "label": "Convert PDF invoices into structured Excel data"
+            "label": "Sample invoice processed into structured Excel data"
           },
           "visuals": [
             {
               "kind": "compare",
               "cards": [
                 {
-                  "title": "Before",
+                  "title": "01 / PDF-to-Excel Processing",
                   "items": [
-                    "Manually transfer invoice line items",
-                    "Repeat operational checks and cleanup in legacy tools"
+                    "Structured invoice line-item output",
+                    "Review before Excel export",
+                    "Sample completed in under 5 minutes"
                   ]
                 },
                 {
-                  "title": "After",
+                  "title": "02 / Legacy Workflow Automation",
                   "items": [
-                    "Review extracted data before using it in Excel",
-                    "Automate routine legacy checks and deletion steps"
+                    "Streamlined recurring workbook preparation",
+                    "Reduced repetitive checks and cleanup",
+                    "Less manual interaction with legacy workflows"
                   ]
                 }
               ]
             }
-          ],
-          "future": [
-            "Explore more invoice formats",
-            "Expand exception handling and audit checks"
           ]
         }
       ]
@@ -1153,19 +1163,6 @@ function renderQuality(parent, visual) {
   add(parent, "p", visual.tools, "quality-tools");
 }
 
-function renderWorktracks(parent, visual) {
-  const grid = add(parent, "div", "", "panel-grid");
-  for (const track of visual.tracks) {
-    const lane = add(grid, "section", "", "track");
-    add(lane, "h4", track.title);
-    for (const [label, description] of [["Manual", track.before], ["Automated", track.after]]) {
-      const step = add(lane, "p", "", "track-step");
-      add(step, "strong", label);
-      add(step, "span", description);
-    }
-  }
-}
-
 function renderEvidence(parent, visual) {
   if (visual.previews ?? (!visual.groups && (visual.featured ?? visual.samples).length <= 2)) {
     const previews = add(parent, "div", "", visual.previews ? "evidence-previews demo-previews" : "evidence-previews");
@@ -1241,6 +1238,22 @@ function renderKpis(parent, visual) {
   add(check, "small", visual.scope);
 }
 
+function renderSolutions(parent, panels) {
+  const grid = add(parent, "div", "", "panel-grid solution-grid");
+  for (const [index, solution] of panels.entries()) {
+    const panel = add(grid, "section", "", "solution-panel");
+    const heading = add(panel, "h4");
+    add(heading, "span", String(index + 1).padStart(2, "0") + " / ", "eyebrow");
+    heading.append(solution.title);
+    const workflow = columnGrid(add(panel, "ol", "", "solution-flow"), solution.nodes.length);
+    for (const step of solution.nodes) add(workflow, "li", step);
+    const sample = project.samples[solution.primary];
+    const preview = solution.poster ? {kind: "image", path: solution.poster} : sample;
+    previewImage(add(panel, "div", "", "solution-preview"), preview);
+    const trigger = button(panel, solution.action, "control primary", () => showSample(solution.primary, solution.samples, trigger));
+  }
+}
+
 function renderVisual(parent, visual) {
   const region = add(parent, "div");
   if (visual.label) add(region, "h4", visual.label, "section-title");
@@ -1264,8 +1277,8 @@ function renderVisual(parent, visual) {
     case "quality":
       renderQuality(region, visual);
       break;
-    case "worktracks":
-      renderWorktracks(region, visual);
+    case "solutions":
+      renderSolutions(region, visual.panels);
       break;
     case "architecture":
       renderArchitecture(region, visual);
@@ -1298,6 +1311,7 @@ function renderStage() {
   const stage = project.stages[stageIndex];
   const stageLabel = (project.stageLabels ?? stages)[stageIndex];
   const slide = add(body, "section", "", stageIndex === 2 ? "slide impact" : "slide");
+  if (stage.compact) slide.classList.add("compact-challenge");
   const step = String(stageIndex + 1).padStart(2, "0");
   add(slide, "p", stageLabel, "eyebrow");
   add(slide, "h3", stage.title);
@@ -1358,7 +1372,7 @@ function showSample(index, indices, trigger) {
     if (candidate === index) chip.setAttribute("aria-current", "true");
   }
   const figure = add(view, "figure");
-  const frame = add(figure, "div", "", "sample-frame");
+  const frame = add(figure, "div", "", sample.path ? "sample-frame" : "sample-frame sample-without-media");
   const placeholder = add(frame, "p", sample.path ? "Loading sample…" : sample.placeholder ?? "Sample available during the interview", "media-placeholder");
   add(figure, "figcaption", sample.caption);
   back.focus();
@@ -1468,8 +1482,14 @@ for (const [index, item] of portfolio.projects.entries()) {
   const explore = button(copy, "Explore project", "explore", () => openProject(index));
   explore.setAttribute("aria-label", "Explore project " + number + " · " + item.title);
   const preview = add(card, "figure", "", "preview");
-  const sample = item.samples[item.preview];
-  previewImage(add(preview, "div", "", "preview-frame"), item.thumbnail ? {...sample, path: item.thumbnail} : sample);
+  const frame = add(preview, "div", "", "preview-frame");
+  if (item.previewFlow) {
+    const diagram = add(frame, "ol", "", "preview-flow");
+    diagram.setAttribute("aria-label", "Data preparation and reporting workflow");
+    for (const step of item.previewFlow) add(diagram, "li", step);
+  } else {
+    previewImage(frame, item.samples[item.preview]);
+  }
   add(preview, "figcaption", item.previewLabel);
 }
 document.getElementById("capabilities").textContent = portfolio.capabilities.join(" · ");
