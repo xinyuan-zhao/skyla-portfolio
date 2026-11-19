@@ -242,24 +242,16 @@ dialog {
 .slide h3 { font-size: clamp(1.7rem, 3vw, 2.75rem); }
 .visuals { gap: 18px; margin-top: clamp(15px, 2.2vw, 28px); }
 .panel-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.stage-panel, .track, .match-card {
+.stage-panel, .track {
   min-width: 0;
   border: 1px solid var(--line);
   border-radius: 9px;
   background: var(--surface);
   padding: clamp(13px, 1.7vw, 24px);
 }
-.stage-panel h4, .track h4, .match-card h4 { font-size: clamp(1rem, 1.6vw, 1.18rem); margin-bottom: 12px; }
+.stage-panel h4, .track h4 { font-size: clamp(1rem, 1.6vw, 1.18rem); margin-bottom: 12px; }
 .stage-panel .flow li { text-align: center; background: var(--tint); border-top: 1px solid var(--line); }
 .repeat-loop { color: var(--accent); text-align: center; margin-top: 12px; font-size: .9rem; font-weight: 650; }
-.merge-diagram { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 10px; align-items: center; }
-.merge-node, .merge-result { border: 1px solid var(--line); border-radius: 6px; padding: 7px; background: var(--surface); font-weight: 650; text-align: center; }
-.merge-diagram .merge-node { position: relative; }
-.merge-diagram .merge-node::after { position: absolute; content: ''; top: 100%; left: 50%; height: 9px; border-left: 1px solid var(--accent); }
-.merge-connector { grid-column: 1 / -1; height: 17px; position: relative; }
-.merge-connector::before { position: absolute; content: ''; left: 24%; right: 24%; top: 9px; border-top: 1px solid var(--accent); }
-.merge-connector::after { position: absolute; content: '↓'; left: 50%; top: 5px; transform: translateX(-50%); color: var(--accent); line-height: 1; font-weight: 750; background: var(--surface); }
-.merge-result { grid-column: 1 / -1; justify-self: center; background: var(--tint); padding-inline: 16px; }
 .takeaway { margin-top: 20px; padding: 13px 16px; }
 .architecture { gap: 28px; }
 .architecture > li { padding: clamp(10px, 1.3vw, 17px); }
@@ -287,11 +279,6 @@ dialog {
 .future { border-top: 1px solid var(--line); padding-top: 11px; margin-top: 18px; color: var(--muted); }
 .future .section-title { font-size: .83rem; }
 .future ul { font-size: .83rem; }
-.match-board { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.2fr); gap: 10px; align-items: stretch; }
-.match-board .merge-diagram { grid-column: 1 / -1; align-self: start; justify-self: center; width: min(100%, 440px); }
-.match-card h4 { margin-bottom: 6px; color: var(--accent); }
-.match-card p { margin-top: 3px; font-size: .91rem; }
-.match-arrow { align-self: center; color: var(--accent); font-size: 1.25rem; font-weight: 700; }
 .quality-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 9px; overflow: hidden; font-size: .92rem; }
 .quality-table th, .quality-table td { text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); padding: 9px 12px; width: 33.33%; }
 .quality-table th { background: var(--tint); color: var(--accent); }
@@ -324,6 +311,15 @@ dialog {
   .audience { padding: 6px 7px; }
   .report-button .report-thumb { aspect-ratio: 24 / 8; }
 }
+
+.workflow-notes { margin-top: 18px; padding-left: 1.25em; color: var(--muted); font-size: .92rem; }
+.workflow-notes li + li { margin-top: 4px; }
+.workflow-notes li::marker { color: var(--accent); font-weight: 700; }
+.demo-previews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.demo-previews .report-button { width: 100%; padding: 8px; }
+.demo-previews .report-thumb { min-height: 90px; }
+.demo-previews .report-button strong { font-size: .9rem; margin-top: 6px; }
+@media (max-width: 620px) { .demo-previews { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -530,136 +526,102 @@ const portfolio = {
     },
     {
       "category": "Operational Controls",
-      "title": "Billing Reconciliation & Exception Detection",
+      "title": "Excel Data Cross-Validation & Discrepancy Detection",
       "tools": [
         "Excel",
-        "Power Query",
-        "XLOOKUP"
+        "Pivot Tables",
+        "XLOOKUP",
+        "Conditional Formatting"
       ],
       "samples": [
         {
-          "title": "Reconciliation Overview",
+          "title": "01 — Historical MRV Data",
           "kind": "image",
-          "caption": "Demonstration workbook showing match controls and exception counts by type."
+          "placeholder": "May–October raw data worksheet screenshot",
+          "caption": "Historical meter readings and consumption records used as the comparison baseline."
         },
         {
-          "title": "Exception Review",
+          "title": "02 — Pivot Table Analysis",
           "kind": "image",
-          "caption": "Synthetic account and meter IDs show how exceptions are categorized, prioritized and tracked."
+          "placeholder": "Pivot Table screenshot · Average of USAGE by account and month",
+          "caption": "Summarized historical usage to establish an account-level baseline."
+        },
+        {
+          "title": "03 — November Cross-Validation",
+          "kind": "image",
+          "placeholder": "November worksheet screenshot · USAGE / HIST AVG USAGE / USAGE VARIANCE",
+          "caption": "Compared current-month usage with historical averages to identify discrepancies for further review."
         }
       ],
-      "summary": "Standardized reconciliation to identify and investigate billing discrepancies.",
-      "preview": 0,
-      "previewLabel": "Available during the interview",
+      "summary": "Cross-validated monthly meter usage against historical patterns to identify discrepancies before billing.",
+      "preview": 2,
+      "previewLabel": "November worksheet preview",
+      "stageLabels": [
+        "The Challenge",
+        "What I Did",
+        "Excel Demonstration"
+      ],
       "stages": [
         {
-          "title": "Two Reports. One Reconciliation Problem.",
-          "lead": "Inconsistent formats made record-to-record comparison and discrepancy investigation difficult.",
+          "title": "Identifying Usage Discrepancies Before Billing",
+          "lead": "Using Excel to compare historical and current meter usage, identify discrepancies, and support pre-billing validation.",
           "visuals": [
             {
               "kind": "compare",
-              "label": "Inputs shown in the demonstration workbook",
               "cards": [
                 {
-                  "title": "MRV records",
+                  "title": "Historical Data Comparison",
                   "items": [
-                    "Meter-reading verification data",
-                    "Account, meter and usage fields"
+                    "Check monthly meter usage against historical consumption.",
+                    "Reviewing multiple months across accounts takes time."
                   ]
                 },
                 {
-                  "title": "BJV records",
+                  "title": "Exception Identification",
                   "items": [
-                    "Billing journal verification data",
-                    "Billing values to compare with source records"
+                    "Unusual usage can be hard to spot in raw data.",
+                    "Investigate potential discrepancies before billing."
                   ]
                 }
               ]
             }
-          ],
-          "takeaway": "Manual matching made it difficult to review exceptions consistently."
+          ]
         },
         {
-          "title": "From Source Reports to an Exception Queue",
-          "lead": "Excel and Power Query standardize the comparison before discrepancies are classified for review.",
+          "title": "A Simple Excel-Based Validation Workflow",
           "visuals": [
             {
-              "kind": "matching",
-              "label": "Reconciliation logic",
-              "inputs": [
-                "MRV records",
-                "BJV records"
+              "kind": "flow",
+              "nodes": [
+                "Historical MRV Data (May–October)",
+                "Pivot Table",
+                "Historical Average Usage",
+                "XLOOKUP with November MRV",
+                "Usage Variance & Exception Review"
               ],
-              "match": {
-                "title": "Standardize & match",
-                "lines": [
-                  "Excel and Power Query",
-                  "XLOOKUP and matching rules"
-                ]
-              },
-              "results": {
-                "title": "Classify & review",
-                "lines": [
-                  "Unmatched or duplicate keys",
-                  "Usage and read mismatches",
-                  "Pivot summary for investigation"
-                ]
-              }
-            },
+              "notes": [
+                "Organized historical meter usage from May through October.",
+                "Used a Pivot Table to calculate Average of USAGE by account, with a monthly breakdown.",
+                "Used XLOOKUP to bring historical averages into the November dataset.",
+                "Calculated November usage minus the historical average.",
+                "Applied conditional formatting and manually reviewed unusual values."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "From Raw Data to Discrepancy Detection",
+          "lead": "Identify unusual usage faster and give manual pre-billing review a consistent starting point.",
+          "visuals": [
             {
               "kind": "evidence",
-              "label": "Workbook evidence",
+              "previews": true,
               "samples": [
                 0,
-                1
+                1,
+                2
               ]
             }
-          ],
-          "technical": [
-            [
-              "Review fields",
-              "The demonstration shows cycle, account, utility and meter. The exact composite matching key is not documented in the available samples."
-            ],
-            [
-              "Matching controls",
-              "The overview shows duplicate-key and unmatched-record checks in both directions to surface one-to-many and missing-record issues."
-            ],
-            [
-              "Classification",
-              "The exception list distinguishes usage mismatches, read mismatches, duplicate keys and records missing from either source."
-            ]
-          ],
-          "artifact": {
-            "label": "Open workbook"
-          }
-        },
-        {
-          "title": "A Repeatable Way to Review Discrepancies",
-          "lead": "The reconciliation turns comparison results into an organized list for investigation.",
-          "visuals": [
-            {
-              "kind": "compare",
-              "cards": [
-                {
-                  "title": "Before",
-                  "items": [
-                    "Compare separate reports manually",
-                    "Identify and organize mismatches by hand"
-                  ]
-                },
-                {
-                  "title": "After",
-                  "items": [
-                    "Use a repeatable matching and exception review workflow",
-                    "Prioritize discrepancies by exception type and severity"
-                  ]
-                }
-              ]
-            }
-          ],
-          "future": [
-            "Add a standard review log for exception resolution",
-            "Explore repeatable checks for new reporting cycles"
           ]
         }
       ]
@@ -1040,7 +1002,7 @@ function previewImage(frame, sample) {
   const fallback = add(frame, "span", "", "media-placeholder");
   fallback.setAttribute("aria-hidden", "true");
   if (!sample?.path || sample.kind !== "image") {
-    fallback.textContent = "Interview preview";
+    fallback.textContent = sample?.placeholder ?? "Interview preview";
     return;
   }
   const image = add(frame, "img");
@@ -1073,30 +1035,12 @@ function flow(parent, nodes) {
   for (const node of nodes) add(route, "li", node);
 }
 
-function mergeDiagram(parent, sources, result) {
-  const diagram = add(parent, "div", "", "merge-diagram");
-  for (const source of sources) add(diagram, "div", source, "merge-node");
-  add(diagram, "div", "", "merge-connector").setAttribute("aria-hidden", "true");
-  add(diagram, "div", result, "merge-result");
-}
-
 function renderManualChecks(parent, visual) {
   const manual = add(parent, "section", "", "stage-panel");
   flow(manual, visual.manual);
   const repeat = add(manual, "p", "", "repeat-loop");
   add(repeat, "span", "↻ ").setAttribute("aria-hidden", "true");
   repeat.append(visual.repeat);
-}
-
-function renderMatching(parent, visual) {
-  const board = add(parent, "div", "", "match-board");
-  mergeDiagram(board, visual.inputs, "Bring sources together");
-  for (const item of [visual.match, visual.results]) {
-    if (item === visual.results) add(board, "div", "→", "match-arrow").setAttribute("aria-hidden", "true");
-    const card = add(board, "section", "", "match-card");
-    add(card, "h4", item.title);
-    for (const detail of item.lines) add(card, "p", detail);
-  }
 }
 
 function renderQuality(parent, visual) {
@@ -1125,8 +1069,8 @@ function renderWorktracks(parent, visual) {
 }
 
 function renderEvidence(parent, visual) {
-  if (!visual.groups && visual.samples.length <= 2) {
-    const previews = add(parent, "div", "", "evidence-previews");
+  if (visual.previews || (!visual.groups && visual.samples.length <= 2)) {
+    const previews = add(parent, "div", "", visual.previews ? "evidence-previews demo-previews" : "evidence-previews");
     for (const index of visual.samples) {
       const sample = project.samples[index];
       const trigger = button(previews, "", "report-button", () => showSample(index, visual.samples, trigger));
@@ -1177,12 +1121,13 @@ function renderVisual(parent, visual) {
   switch (visual.kind) {
     case "flow":
       flow(region, visual.nodes);
+      if (visual.notes) {
+        const notes = add(region, "ol", "", "workflow-notes");
+        for (const note of visual.notes) add(notes, "li", note);
+      }
       break;
     case "manualChecks":
       renderManualChecks(region, visual);
-      break;
-    case "matching":
-      renderMatching(region, visual);
       break;
     case "quality":
       renderQuality(region, visual);
@@ -1219,9 +1164,10 @@ function renderStage() {
   sampleReturn = null;
   clearBody();
   const stage = project.stages[stageIndex];
+  const stageLabel = (project.stageLabels ?? stages)[stageIndex];
   const slide = add(body, "section", "", stageIndex === 2 ? "slide impact" : "slide");
   const step = String(stageIndex + 1).padStart(2, "0");
-  add(slide, "p", stages[stageIndex], "eyebrow");
+  add(slide, "p", stageLabel, "eyebrow");
   add(slide, "h3", stage.title);
   if (stage.lead) add(slide, "p", stage.lead, "lead");
   if (stage.metric) {
@@ -1255,7 +1201,7 @@ function renderStage() {
     }
   }
   document.getElementById("position").textContent = step + " / " + String(project.stages.length).padStart(2, "0");
-  document.getElementById("step-name").textContent = stages[stageIndex];
+  document.getElementById("step-name").textContent = stageLabel;
   previous.setAttribute("aria-disabled", String(stageIndex === 0));
   next.setAttribute("aria-disabled", String(stageIndex === project.stages.length - 1));
 }
@@ -1277,7 +1223,7 @@ function showSample(index, indices, trigger) {
   }
   const figure = add(view, "figure");
   const frame = add(figure, "div", "", "sample-frame");
-  const placeholder = add(frame, "p", sample.path ? "Loading sample…" : "Sample available during the interview", "media-placeholder");
+  const placeholder = add(frame, "p", sample.path ? "Loading sample…" : sample.placeholder ?? "Sample available during the interview", "media-placeholder");
   add(figure, "figcaption", sample.caption);
   back.focus();
   if (!sample.path) return;
